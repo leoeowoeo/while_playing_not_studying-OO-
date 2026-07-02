@@ -13,6 +13,7 @@ SRC = funcoes/demo.c \
       animacoes/animacaomenu.c \
       animacoes/animacaopequenina.c \
       animacoes/abrirlivro.c \
+      animacoes/estudar.c \
       animacoes/transicao.c \
       animacoes/slow_mvwprintw.c \
       provas/prova_simples.c \
@@ -59,7 +60,8 @@ SRC = funcoes/demo.c \
       funcoes/menu/desenha_borda.c \
       funcoes/menu/inicio.c \
       funcoes/menu/personalizar.c \
-      funcoes/cenario/mecanicas/desenhanafrente.c
+      funcoes/cenario/mecanicas/desenhanafrente.c 
+      
 
 
 

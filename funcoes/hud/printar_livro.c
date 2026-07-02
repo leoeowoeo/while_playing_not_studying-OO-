@@ -6,7 +6,7 @@ if (livropickup == 1)
         if (*abrindolivro == 1) 
         {
             abrirlivro(&livro1, &livro2, &livro3); 
-            abrindolivro = 0; 
+            *abrindolivro = 0; 
             werase(stdscr); 
         }
         if (livro1 == 1 && livro2 == 0 && livro3 == 0)

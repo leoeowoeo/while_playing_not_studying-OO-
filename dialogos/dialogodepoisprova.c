@@ -9,84 +9,75 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
     int marcar_resposta = 0;
     int tecla_cena = 0;
     erase();
-    nodelay(stdscr, FALSE);
+    nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
     if ((*acertos) * 2 >= 0 && (*acertos) * 2 <= 5)
     {
-        slow_mvwprintw(stdscr, "Voce vem caminhando da escola arrastando os pes...", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Voce vem caminhando da escola arrastando os pes...", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "O chao parece mais pesado a cada passo ate o portao de casa.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "O chao parece mais pesado a cada passo ate o portao de casa.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Ao abrir a porta da sala, sua mae esta de pe, bracos cruzados,", linha_atual, Xall, &skipado);
-        if (skipado) return;
+        slow_mvwprintw(stdscr, "Ao abrir a porta da sala, sua mae esta de pe, bracos cruzados,", linha_atual, Xall, 50,&skipado);
         linha_atual++;
-        slow_mvwprintw(stdscr, "batendo o pe no chao com o telefone fixo a na outra mao.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "batendo o pe no chao com o telefone fixo a na outra mao.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual += 2;
         wattron(stdscr, A_BOLD);
-        slow_mvwprintw(stdscr, "Mae- O diretor acabou de me ligar.", linha_atual, Xall, &skipado);
-        if (skipado) return;
+        slow_mvwprintw(stdscr, "Mae- O diretor acabou de me ligar.", linha_atual, Xall, 50,&skipado);
         wattroff(stdscr, A_BOLD);
-        refresh(); napms(700);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Ele me ligou para dizer que o meu filho conseguiu a proeza de fracassar.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Ele me ligou para dizer que o meu filho conseguiu a proeza de fracassar.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Me diz... o que voce tem na cabeca? Agua?!", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Me diz... o que voce tem na cabeca? Agua?!", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Eu trabalho o dia inteiro, me mato para te dar as coisas,", linha_atual, Xall, &skipado);
-        if (skipado) return;
+        slow_mvwprintw(stdscr, "Mae- Eu trabalho o dia inteiro, me mato para te dar as coisas,", linha_atual, Xall, 50,&skipado);
         linha_atual++;
-        slow_mvwprintw(stdscr, "     para voce sentar a bunda na cadeira da escola e nao acertar metade de uma prova?!", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "     para voce sentar a bunda na cadeira da escola e nao acertar metade de uma prova?!", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         if (*maexinga == 1)
         {
             linha_atual += 2;
             wattron(stdscr, A_BOLD);
-            slow_mvwprintw(stdscr, "Mae- E O PIOR! Voce mentiu para mim! Olhou nos meus olhos e disse que tinha estudado!", linha_atual, Xall, &skipado);
-            if (skipado) return;
+            slow_mvwprintw(stdscr, "Mae- E O PIOR! Voce mentiu para mim! Olhou nos meus olhos e disse que tinha estudado!", linha_atual, Xall, 50,&skipado);
+
             wattroff(stdscr, A_BOLD);
-            refresh(); napms(700);
+            refresh(); if(!skipado) napms(700);
             linha_atual++;
-            slow_mvwprintw(stdscr, "Mae- Alem de nao estudar, virou um mentiroso de M#%%D@!", linha_atual, Xall, &skipado);
-            if (skipado) return;
-            refresh(); napms(700);
+            slow_mvwprintw(stdscr, "Mae- Alem de nao estudar, virou um mentiroso de M#%%D@!", linha_atual, Xall, 50,&skipado);
+
+            refresh(); if(!skipado) napms(700);
             linha_atual++;
-            slow_mvwprintw(stdscr, "Mae- Pois agora voce vai para o quarto, e nao vai sair ate saber mais do que Pitagoras.", linha_atual, Xall, &skipado);
-            if (skipado) return;
-            refresh(); napms(700);
+            slow_mvwprintw(stdscr, "Mae- Pois agora voce vai para o quarto, e nao vai sair ate saber mais do que Pitagoras.", linha_atual, Xall, 50,&skipado);
+
+            refresh(); if(!skipado) napms(700);
             linha_atual++;
             wattron(stdscr, A_BOLD);
-            slow_mvwprintw(stdscr, "Mae- VOCE VAI FICAR LA ATE APRENDER!", linha_atual, Xall, &skipado);
-            if (skipado) return;
+            slow_mvwprintw(stdscr, "Mae- VOCE VAI FICAR LA ATE APRENDER!", linha_atual, Xall, 50,&skipado);
+
             wattroff(stdscr, A_BOLD);
-            refresh(); napms(700);
+            refresh(); if(!skipado) napms(700);
         }
         else
         {
             linha_atual += 2;
-            slow_mvwprintw(stdscr, "Mae- Voce tinha me dito que nao tinha estudado muito, mas isso?!", linha_atual, Xall, &skipado);
-            if (skipado) return;
-            refresh(); napms(700);
+            slow_mvwprintw(stdscr, "Mae- Voce tinha me dito que nao tinha estudado muito, mas isso?!", linha_atual, Xall, 50,&skipado);
+
+            refresh(); if(!skipado) napms(700);
             linha_atual++;
-            slow_mvwprintw(stdscr, "Mae- Isso eh a pura incompetencia! Ficou que nem um vagabundo na sala!", linha_atual, Xall, &skipado);
-            if (skipado) return;
-            refresh(); napms(700);
+            slow_mvwprintw(stdscr, "Mae- Isso eh a pura incompetencia! Ficou que nem um vagabundo na sala!", linha_atual, Xall, 50,&skipado);
+
+            refresh(); if(!skipado) napms(700);
             linha_atual++;
             wattron(stdscr, A_BOLD);
-            slow_mvwprintw(stdscr, "Mae- Acabou a palhacada. Sem celular, sem diversao ate que voce cumpra com as obrigacoes!", linha_atual, Xall, &skipado);
-            if (skipado) return;
+            slow_mvwprintw(stdscr, "Mae- Acabou a palhacada. Sem celular, sem diversao ate que voce cumpra com as obrigacoes!", linha_atual, Xall, 50,&skipado);
+
             wattroff(stdscr, A_BOLD);
-            refresh(); napms(700);
+            refresh(); if(!skipado) napms(700);
         }
 
         int opcao_principal = 0;
@@ -120,17 +111,14 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
     }
     else if ((*acertos) * 2 >= 6 && (*acertos) * 2 <= 9)
     {
-        slow_mvwprintw(stdscr, "Voce entra em casa em silencio, deixando a mochila no sofa.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Voce entra em casa em silencio, deixando a mochila no sofa.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Sua mae sai da cozinha limpando as maos em um pano de prato.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Sua mae sai da cozinha limpando as maos em um pano de prato.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Voce chegou... E ai? Como foi naquela bendita prova de matematica?", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Voce chegou... E ai? Como foi naquela bendita prova de matematica?", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual += 2;
         flushinp();
         while (1)
@@ -158,8 +146,8 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
             linha_atual++;
             mvwprintw(stdscr, linha_atual, Xall, "                                                                 ");
             linha_atual--;
-            slow_mvwprintw(stdscr, "Garoto- ...", linha_atual, Xall, &skipado);
-            if (skipado) return;
+            slow_mvwprintw(stdscr, "Garoto- ...", linha_atual, Xall, 50,&skipado);
+
         }
         else
         {
@@ -167,54 +155,46 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
             linha_atual++;
             mvwprintw(stdscr, linha_atual, Xall, "                                                                 ");
             linha_atual--;
-            slow_mvwprintw(stdscr, "Garoto- Foi facil", linha_atual, Xall, &skipado);
-            if (skipado) return;
+            slow_mvwprintw(stdscr, "Garoto- Foi facil", linha_atual, Xall, 50,&skipado);
+
         }
         linha_atual += 2;
-        slow_mvwprintw(stdscr, "Mae- Me da logo esse papel, deixa eu ver o resultado com os meus proprios olhos.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Me da logo esse papel, deixa eu ver o resultado com os meus proprios olhos.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual += 2;
-        slow_mvwprintw(stdscr, "Voce tira a prova amassada do bolso e entrega para ela.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Voce tira a prova amassada do bolso e entrega para ela.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         erase();
         linha_atual = Yall;
-        slow_mvwprintw(stdscr, "Ela ajeita a postura, distancia a prova com os bracos esticados, cerra os olhos e analisa a folha por longos segundos...", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Ela ajeita a postura, distancia a prova com os bracos esticados, cerra os olhos e analisa a folha por longos segundos...", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual += 2;
-        slow_mvwprintw(stdscr, "Mae- Um ", linha_atual, Xall, &skipado);
-        if (skipado) return;
+        slow_mvwprintw(stdscr, "Mae- Um ", linha_atual, Xall, 50,&skipado);
         wattron(stdscr, A_BOLD);
         mvprintw(linha_atual, Xall + 9, "%d", (*acertos) * 2);
         wattroff(stdscr, A_BOLD);
-        slow_mvwprintw(stdscr, "... Hum.", linha_atual, Xall + 12, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "... Hum.", linha_atual, Xall + 12, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Nao eh uma nota para se orgulhar.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Nao eh uma nota para se orgulhar.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Eu nao disse ontem bem claro que era para GABARITAR?!", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Eu nao disse ontem bem claro que era para GABARITAR?!", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         if (*maexinga == 1)
         {
             linha_atual += 2;
-            slow_mvwprintw(stdscr, "Mae- Voce mente para mim e nem serve pra manter a mentira ", linha_atual, Xall, &skipado);
-            if (skipado) return;
-            refresh(); napms(700);
+            slow_mvwprintw(stdscr, "Mae- Voce mente para mim e nem serve pra manter a mentira ", linha_atual, Xall, 50,&skipado);
+
+            refresh(); if(!skipado) napms(700);
             linha_atual++;
-            slow_mvwprintw(stdscr, "Mae- Se vai vacilar comigo, acerta em alguma coisa pelo menos.", linha_atual, Xall, &skipado);
-            if (skipado) return;
-            refresh(); napms(700);
+            slow_mvwprintw(stdscr, "Mae- Se vai vacilar comigo, acerta em alguma coisa pelo menos.", linha_atual, Xall, 50,&skipado);
+
+            refresh(); if(!skipado) napms(700);
         }
         linha_atual += 2;
-        slow_mvwprintw(stdscr, "Mae- Agora, vai pro seu quarto, vai ficar sem nada ate que voce aprenda tudo daqueles livros.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Agora, vai pro seu quarto, vai ficar sem nada ate que voce aprenda tudo daqueles livros.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
 
         int opcao_principal = 0;
         flushinp();
@@ -246,58 +226,46 @@ void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
     }
     else if ((*acertos) * 2 == 10)
     {
-        slow_mvwprintw(stdscr, "Voce abre a porta de casa com um sorriso de soslaio!", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Voce abre a porta de casa com um sorriso de soslaio!", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Voce chega na sala e diz em voz alta:", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Voce chega na sala e diz em voz alta:", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual += 2;
         wattron(stdscr, A_BOLD);
-        slow_mvwprintw(stdscr, "Garoto- MAE! MAE! EU GABARITEI! EU TIREI DEZ NA PROVA DE MATEMATICA!!", linha_atual, Xall, &skipado);
-        if (skipado) return;
+        slow_mvwprintw(stdscr, "Garoto- MAE! MAE! EU GABARITEI! EU TIREI DEZ NA PROVA DE MATEMATICA!!", linha_atual, Xall, 50,&skipado);
         wattroff(stdscr, A_BOLD);
-        refresh(); napms(700);
+        refresh(); if(!skipado) napms(700);
         linha_atual += 2;
-        slow_mvwprintw(stdscr, "Sua mae aparece na sala, olha para voce sem esbocar nenhuma reacao.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Sua mae aparece na sala, olha para voce sem esbocar nenhuma reacao.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Ela pega o papel da sua mao, confere o carimbo do professor e solta um suspiro.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Ela pega o papel da sua mao, confere o carimbo do professor e solta um suspiro.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Hm... Realmente eh um dez.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Hm... Realmente eh um dez.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Ta vendo? Quando voce quer, voce consegue fazer as coisas direito.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Ta vendo? Quando voce quer, voce consegue fazer as coisas direito.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
         wattron(stdscr, A_BOLD);
-        slow_mvwprintw(stdscr, "Mae- A nota eh boa, mas nao fez mais que a sua obrigacao.", linha_atual, Xall, &skipado);
-        if (skipado) return;
+        slow_mvwprintw(stdscr, "Mae- A nota eh boa, mas nao fez mais que a sua obrigacao.", linha_atual, Xall, 50,&skipado);
         wattroff(stdscr, A_BOLD);
-        refresh(); napms(700);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Estudar eh a unica coisa que voce tem que fazer.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Estudar eh a unica coisa que voce tem que fazer.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- Entao nao ache que esse dez vai te dar permissao pra ficar acordado ate tarde.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Entao nao ache que esse dez vai te dar permissao pra ficar acordado ate tarde.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual += 2;
-        slow_mvwprintw(stdscr, "Mae- Fecha a porta que voce deixou escancarada e tira o sapato que ta sujando a sala que eu limpei hoje.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- Fecha a porta que voce deixou escancarada e tira o sapato que ta sujando a sala que eu limpei hoje.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
         linha_atual++;
-        slow_mvwprintw(stdscr, "Mae- E lave suas maos para almocar.", linha_atual, Xall, &skipado);
-        if (skipado) return;
-        refresh(); napms(700);
+        slow_mvwprintw(stdscr, "Mae- E lave suas maos para almocar.", linha_atual, Xall, 50,&skipado);
+        refresh(); if(!skipado) napms(700);
     }
-    napms(700);
+    if(!skipado) napms(700);
     transicao(epilepsia);
 }

@@ -23,7 +23,7 @@ mvprintw(yselecao+10, xselecao - 39, "`\"bp.   `'   `YMMMa.   MM     MM    MM 8M
 mvprintw(yselecao+11, xselecao - 39, "   Mb   ,,   L.   I8   MM     MM    MM `Mb    MM     VVV      MM   MM    MM 8M        YM. `Mb.    ,dP' `Mb.    ,dP' ,M9 ,, 6M   ");
 mvprintw(yselecao+12, xselecao - 39, "   MM   db   M9mmmP'   `Mbmo  `Mbod\"YML.`Wbmd\"MML.   ,V     .JMML.JMML  JMML.YMMMMMb   Mb   `\"bmmd\"'     `\"bmmd\"'   dM  dg MM   ");
 mvprintw(yselecao+13, xselecao - 39, "   YM                                               ,V                      6'     dP   Yq.                       .pY   ,j M9   ");
-mvprintw(yselecao+14, xselecao - 39, "    `bm                                          OOb\"                       Ybmmmd'       ``                     ''    ,'md'    ");
+mvprintw(yselecao+14, xselecao - 39, "    `bm                                          OOb\"                       Ybmmmd'       ``                     ''     'md'    ");
 wrefresh(stdscr);
 
         mvprintw(yselecao+20,xselecao-8,"JOGAR");

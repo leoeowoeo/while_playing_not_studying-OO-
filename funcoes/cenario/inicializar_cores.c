@@ -12,9 +12,9 @@
 #define COR_ESPELHO        17
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19
-void inicializar_cores(SAVE save, int interage, int selecaocor, int *par)
+void inicializar_cores(SAVE *save, int interage, int *par)
 {
-    if (save.cor == 1)
+    if (save->cor == 1)
     {
         start_color();
         use_default_colors();
@@ -51,9 +51,9 @@ void inicializar_cores(SAVE save, int interage, int selecaocor, int *par)
             init_pair(12, COLOR_YELLOW, -1);
             init_pair(13, COLOR_WHITE, -1);
             init_pair(14, COR_CIANO, -1);
-            if (selecaocor == 0) *par = 12;
-            else if (selecaocor == 1) *par = 13;
-            else if (selecaocor == 2) *par = 14;
+            if (save->selecao_cor == 0) *par = 12;
+            else if (save->selecao_cor == 1) *par = 13;
+            else if (save->selecao_cor == 2) *par = 14;
         }
     }
 }

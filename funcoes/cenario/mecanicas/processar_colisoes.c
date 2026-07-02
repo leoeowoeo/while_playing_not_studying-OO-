@@ -22,6 +22,19 @@ void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int 
             if (*xf == i && *yf == j && (*xf - save->x) != 0) *xf = save->x;
             else if (*xf == i && *yf == j && (*yf - save->y) != 0) *yf = save->y;
         }
+        
+
+
+
+        for (int i = armarioX - 2; i <= armarioX + 5; i++)
+        for (int j = armarioY + 5; j <= armarioY + 7; j++)
+        {
+            if (*xf == i && *yf == j && (*xf - save->x) != 0) *xf = save->x;
+            else if (*xf == i && *yf == j && (*yf - save->y) != 0) *yf = save->y;
+        }
+    
+
+        
     for (int i = mesaX - 1; i <= mesaX + 5; i++)
         for (int j = mesaY; j <= mesaY + 1; j++)
         {

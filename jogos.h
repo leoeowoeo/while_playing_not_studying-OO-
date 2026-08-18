@@ -94,5 +94,5 @@ void printar_celular(SAVE save,int celularX,int celularY);
 void printar_livro(int livropickup, int *abrindolivro, int livro1, int livro2, int livro3, int livroY, int livroX );
 void desenhanafrente(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par,int lixoY, int lixoX);
 void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *estudo,int *tecla,int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check);
-
+int campominado();
 #endif

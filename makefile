@@ -5,7 +5,7 @@ OUT = /tmp/game
 DELETE = rm -f
 CLEAR = && clear
 SRC = funcoes/demo.c \
-      PE_JOGO_2.c \
+      WhilePlayingNotStudying.c \
       jogos/pedrapapeltesoura.c \
       jogos/cobra.c \
       jogos/campominado.c \

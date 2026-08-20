@@ -1,7 +1,7 @@
 #include <ncurses.h>
 #include <string.h>
 #include <stdlib.h>
-#include "jogos.h"
+#include "oo.h"
 int mvwprintw_cansado_complexa(WINDOW *janela, int Yprova, int Xprova, const char *prova, int cansando);
 
 int prova_cansado_complexa(SAVE *save,int *acertos) 

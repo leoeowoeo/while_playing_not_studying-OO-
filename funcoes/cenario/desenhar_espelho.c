@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_espelho(int Xall, int Yall, int cor, int par)
 {
     int espelhoy = 3 + Yall, espelhox = 63 + Xall;

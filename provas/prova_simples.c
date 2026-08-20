@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 #include <ncurses.h>
 
 int prova_simples(SAVE *save, int *acertos){

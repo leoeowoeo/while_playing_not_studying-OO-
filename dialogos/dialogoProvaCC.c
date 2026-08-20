@@ -1,5 +1,5 @@
 #include<ncurses.h>
-#include"jogos.h"
+#include "oo.h"
 void dialogoprovacc()
 {
     int skipado = 0;

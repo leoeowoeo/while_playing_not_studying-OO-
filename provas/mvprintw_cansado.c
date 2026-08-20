@@ -1,4 +1,4 @@
-#include"jogos.h"
+#include "oo.h"
 int mvwprintw_cansado(WINDOW *janela, int Yprova, int Xprova, const char *prova, int cansando)// não estava funcionando com prova[151], tive que por *prova, como um ponteiro que aponta pro primeiro tamanho do prova, por algum motivo...
 { 
     int tamanho = strlen(prova);

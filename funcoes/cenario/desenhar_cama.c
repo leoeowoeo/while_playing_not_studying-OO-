@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_cama(int Xall, int Yall, int cor, int interagirCam, int par)
 {
     int camaY = 8 + Yall, camaX = 80 + Xall;

@@ -1,6 +1,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
-#include "jogos.h"
+#include "oo.h"
 #include <signal.h>
 #define COR_CIANO          18
 void XeYselecaoLUGAR(int *yselecao, int *xselecao);

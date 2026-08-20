@@ -1,7 +1,7 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
-#include "jogos.h"
+#include "oo.h"
 // Função que substitui mvwprintw e gera o efeito de desmoronamento
 int prova_cansado_simples(SAVE *save,int *acertos)
 {

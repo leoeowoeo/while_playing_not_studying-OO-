@@ -1,5 +1,5 @@
-#ifndef JOGOS_H
-#define JOGOS_H
+#ifndef OO_H
+#define OO_H
 
 #include <ncurses.h>
 #include <stdio.h>
@@ -91,6 +91,7 @@ void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int 
 void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelhox, int espelhoy, int camaX, int camaY, int armarioX, int armarioY, int janelaX, int janelaY, int celularX, int celularY, int *espelho, int *dormindo, int *armarioaberto, int *interagirCam, int *interagirArm, int *interagirJan, int *interagirCel, int *interagirEst, int *marcar, int *jogarcelular5, int cor, int *revista_linha, int *revista_coluna, int *livro1, int *livro2, int *livro3, int *abrindolivro, int *estudo, int *estudando, int *acertos, int vira, int estanteX, int estanteY);
 void espelhaogaroto(SAVE *save, int espelhox, int espelhoy, int pisca,int selecao_face,int selecao_pernas, int selecao_olhos,int passo,int vira);
 void printar_celular(SAVE save,int celularX,int celularY);
+void printapracelular(int Xall,int Yall,int posy, int posx);
 void printar_livro(int livropickup, int *abrindolivro, int livro1, int livro2, int livro3, int livroY, int livroX );
 void desenhanafrente(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par,int lixoY, int lixoX);
 void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *estudo,int *tecla,int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check);

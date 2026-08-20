@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_jogador(SAVE *save, int vira, int passo, int pisca, int cor, int selecao_face, int selecao_olhos, int selecao_pernas)
 {
     char *olhos[10] = {"##", "@@", "**", "$$", "vv", "><", "XX", "OO", "00", "oo"};

@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 
 #define TARGET_FRAME_MS 30
 #define COR_MARROM         8
@@ -33,7 +33,7 @@ void inicializar_cores(SAVE *save, int interage, int *par)
         init_color(COR_ESPELHO, 700, 850, 900);
         init_color(COR_CIANO, 0, 1000, 1000);
         init_color(COR_CINZACLARO, 850, 850, 850);
-        init_color(COR_CINZAESCURO, 600, 600, 600);
+        init_color(COR_CINZAESCURO, 700, 700, 700);
         
         init_pair(1, COR_RODAPE, -1);
         init_pair(2, COR_JANELA, -1);
@@ -68,7 +68,7 @@ void inicializar_cores(SAVE *save, int interage, int *par)
 }
 
 
-/*#include"jogos.h"
+/*#include "oo.h"
 #define TARGET_FRAME_MS 30
 #define COR_MARROM         8
 #define COR_JANELA         9

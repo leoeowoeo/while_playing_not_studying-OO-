@@ -1,4 +1,6 @@
-#include "jogos.h"
+#include "oo.h"
+#include <stdlib.h>
+#include <time.h>
 
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19
@@ -8,19 +10,74 @@
 #define PAR_CINZACLARO     27
 #define PAR_VERMELHO       42
 
+typedef struct A_{
+    int bomba;
+    int pertobomba;
+    char sprite;
+}campo;
+
+void geracampo(campo campo[30][30]){
+    int i,j;
+    int bomba=20;//diff facil
+    int bomba2=30;//diff medio
+    int bomba3=90;//diff dificil
+    while(bomba!=0)
+    {
+        i=rand() % 30;
+        j=rand() % 30;
+        if(campo[i][j].bomba==0)
+        {
+            campo[i][j].bomba=1;
+           
+            if(i-1>=0)
+                campo[i-1][j].pertobomba++;
+            if(i+1<=29)
+                campo[i+1][j].pertobomba++;
+            if(j-1>=0)
+                campo[i][j-1].pertobomba++;
+            if(j+1<=29)
+                campo[i][j+1].pertobomba++;
+            
+            if(i+1<=29&&j+1<=29)
+                campo[i+1][j+1].pertobomba++;
+            if(i-1>=0&&j+1<=29)
+                campo[i-1][j+1].pertobomba++;
+            if(i+1<=29&&j-1>=0)
+                campo[i+1][j-1].pertobomba++;
+            if(i-1>=0&&j-1>=0)
+                campo[i-1][j-1].pertobomba++;
+        }
+        else
+            bomba++;
+        bomba--;
+    }
+}
 int campominado()
 {
-    WINDOW *campominado = newwin(31, 92, 3, 15);
+    srand(time(NULL));
+    WINDOW *campominado = newwin(17, 49, 6, 30);
     
+
+    //31, 92, 3, 15
+
     keypad(campominado, TRUE); 
     nodelay(campominado, TRUE);
 
-    int matriz[29][30] = {0};
-
+    int matriz[15][16] = {0};
+    // int matriz[29][30] = {0};
+    campo campo[30][30];
+    for(int i=0;i<16;i++)
+    {
+        for(int j=0;j<16;j++)
+        {
+            campo[i][j].bomba=0;
+            campo[i][j].pertobomba=0;
+        }
+    }
+    geracampo(campo);
     int selecaoX = 0; 
     int selecaoY = 0;
     int tecla = 0;
-    
     int timer = 0;
     int velocidade = 0;
 
@@ -31,14 +88,21 @@ int campominado()
         tecla = wgetch(campominado);
         werase(campominado);
 
-        for (int j = 1; j < 30; j++)
-        {
-            for (int i = 1; i < 90; i += 3)
-            {
-                // Converte a posição física da tela (i, j) para a posição lógica da matriz
-                int atualX = i / 3;
-                int atualY = j - 1;
 
+        /*for(int i=0;i<30;i++){
+            for(int j=0;j<30;j++){
+                if(campo[i][j].bomba==1)
+
+                mvwprintw(campominado,j,i,"%d",campo[i][j].bomba);
+            }
+        }*/
+        for (int j = 1; j < 16; j++)
+        {
+            for (int i = 1; i < 49; i += 3)
+            {// o i ta vezes 3 pra ficar proximo de um quadrado, mas não pode ser 2 pq os numeros não
+                int atualX = i / 3;// vao ficar centralizados.
+                int atualY = j - 1;// ta nesse modelo de i/3 pra isso, já que a movimentação não vai contar  
+                                   // com os espaços, já que eu to fazendo uma matriz 30/30 mas a linha tem "3X" mais do que a coluna so pelo front, mas no fundo ele tem que ser 30x30 msm
                 // Lógica de cores alternadas (xadrez)
                 int par_de_cores;
                 if ((atualX + atualY) % 2 == 0) {
@@ -52,29 +116,30 @@ int campominado()
                 {
                     wattron(campominado, COLOR_PAIR(par_de_cores) | A_REVERSE); 
                     mvwprintw(campominado, j, i, "   "); 
-                    wattroff(campominado, COLOR_PAIR(par_de_cores) | A_REVERSE);
+                    wattroff(campominado, COLOR_PAIR(par_de_cores) | A_REVERSE);    
                 }
                 else
                 {
                     wattron(campominado, COLOR_PAIR(par_de_cores));
                     mvwprintw(campominado, j, i, "   ");
                     wattroff(campominado, COLOR_PAIR(par_de_cores));
+                    if(campo[j-1][i/3].bomba==1){
+                    mvwprintw(campominado,j,i," @ ");
+                    if(campo[j-1][i/3].pertobomba > 0 && campo[j-1][i/3].bomba != 1){
+                        mvwprintw(campominado, j, i, " %d ", campo[j-1][i/3].pertobomba);
+                    }
+
+                }
                 }
             }
         }
-
-        // Impressão do Timer
-        wattron(campominado, COLOR_PAIR(PAR_VERMELHO));
-        mvwprintw(campominado, 0, 2, " Timer: %d ", timer); 
-        wattroff(campominado, COLOR_PAIR(PAR_VERMELHO));
         
-        velocidade++;
-        if (velocidade % 33 == 0) {
-            timer++;
-        }
-
         box(campominado, 0, 0);
         wrefresh(campominado);
+
+        wattron(campominado,COLOR_PAIR(PAR_VERMELHO));
+        mvwprintw(campominado,0,0,"timer:%d",timer);
+        wattroff(campominado,COLOR_PAIR(PAR_VERMELHO));
 
         // Movimentação
         switch (tecla)
@@ -82,28 +147,29 @@ int campominado()
             case KEY_LEFT:
             case 'a':
                 selecaoX--;
-                if (selecaoX < 0) selecaoX = 30 - 1;
+                if (selecaoX < 0) selecaoX = 16 - 1;
                 break;
 
             case KEY_RIGHT:
             case 'd':
                 selecaoX++;
-                if (selecaoX >= 30) selecaoX = 0;
+                if (selecaoX >= 16) selecaoX = 0;
                 break;
 
             case KEY_UP:
             case 'w':
                 selecaoY--;
-                if (selecaoY < 0) selecaoY = 29 - 1;
+                if (selecaoY < 0) selecaoY = 15 - 1;
                 break;
 
             case KEY_DOWN:
             case 's':
                 selecaoY++;
-                if (selecaoY >= 29) selecaoY = 0;
+                if (selecaoY >= 16) selecaoY = 0;
                 break;
 
             case '\n':
+
             case ' ':
                 matriz[selecaoY][selecaoX] = 1; 
                 break;
@@ -116,7 +182,7 @@ int campominado()
     return 0;
 }
 
-/*#include "jogos.h"
+/*#include "oo.h"
 
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19

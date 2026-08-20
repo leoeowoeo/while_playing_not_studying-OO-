@@ -1,6 +1,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
-#include "jogos.h"
+#include "oo.h"
 int personalizar(int *selecao_olhos, int *selecao_face,int *selecao_pernas, int xselecao, int yselecao)
 //a função abre a area de personalização do personagem, possibilitando mudar somente a aparência, já que só temos um atributo ( a inteligencia ),
 // que só é adiquirivel pelo estudo, o personagem não nasce com 

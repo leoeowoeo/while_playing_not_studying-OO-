@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_chuva(int Xall, int Yall, int cor, int chuvax, int chuvay, int *pos, int *pos2, int *pos3,int check)
 {
     

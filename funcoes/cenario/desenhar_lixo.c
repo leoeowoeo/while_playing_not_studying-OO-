@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_lixo(int Xall, int Yall, int cor)
 {
     int lixoY = 27 + Yall, lixoX = 84 + Xall;

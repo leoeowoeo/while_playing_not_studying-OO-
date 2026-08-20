@@ -1,4 +1,4 @@
-#include"jogos.h"
+#include "oo.h"
 void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelhox, int espelhoy, int camaX, int camaY, int armarioX, int armarioY, int janelaX, int janelaY, int celularX, int celularY, int *espelho, int *dormindo, int *armarioaberto, int *interagirCam, int *interagirArm, int *interagirJan, int *interagirCel, int *interagirEst, int *marcar, int *jogarcelular5, int cor, int *revista_linha, int *revista_coluna, int *livro1, int *livro2, int *livro3, int *abrindolivro, int *estudo, int *estudando, int *acertos, int vira,int estanteX, int estanteY)
 {
     // ESPELHO

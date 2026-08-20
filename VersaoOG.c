@@ -19,7 +19,7 @@
     #define COR_CIANO          18
     #define COR_CINZAESCURO    19
 
-#include "jogos.h"
+#include "oo.h"
 int main()
 {
     FILE *entrada, *saida;

@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_mesa(int Xall, int Yall, int cor)
 {
     int mesaY = 8 + Yall, mesaX = 74 + Xall;

@@ -1,4 +1,4 @@
-#include"jogos.h"
+#include "oo.h"
 void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos)
 {
     int portaY = 3 + Yall, portaX = 11 + Xall;

@@ -61,6 +61,7 @@ SRC = funcoes/demo.c \
       funcoes/menu/desenha_borda.c \
       funcoes/menu/inicio.c \
       funcoes/menu/personalizar.c \
+      funcoes/hud/printacelularprajogo.c \
       funcoes/cenario/mecanicas/desenhanafrente.c 
       
 

@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 int mvwprintw_cansado_complexa(WINDOW *janela, int Yprova, int Xprova, const char *prova, int cansando)// não estava funcionando com prova[151], tive que por *prova, como um ponteiro que aponta pro primeiro tamanho do prova, por algum motivo...
 { 
     if (Yprova < 0 || Yprova >= LINES) return 0;// eu add isso aqui, pq a prova tava bugando qnd ia pra cima dms, ela printava tudo torto

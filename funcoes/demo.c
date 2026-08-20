@@ -1,5 +1,5 @@
 #include<ncurses.h>
-#include "jogos.h"
+#include "oo.h"
 void demo()// delimita onde o jogador pode acessar, já que não temos todos os modos de jogo que serão feitos prontos e disponiveis na integridade
 {
     initscr();

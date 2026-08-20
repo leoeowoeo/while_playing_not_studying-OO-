@@ -1,4 +1,4 @@
-#include"jogos.h"
+#include "oo.h"
     void animacaopequenina(int yselecao,int xselecao)
     {
         nodelay(stdscr,TRUE);

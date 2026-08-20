@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_tapete(int Xall, int Yall, int cor)
 {
     int tapetey = 18 + Yall, tapetex = 45 + Xall;

@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_armario(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par)
 {
     int armarioY = 14 + Yall, armarioX = 19 + Xall;

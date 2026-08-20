@@ -1,5 +1,5 @@
 #include <ncurses.h>
-#include "jogos.h"
+#include "oo.h"
 void abrirlivro(int *livro1,int *livro2,int *livro3)// a função roda os sprites do livro N abrindo
 {
         curs_set(0); // guia foca

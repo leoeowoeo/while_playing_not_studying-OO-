@@ -1,5 +1,5 @@
 #include<ncurses.h>
-#include "jogos.h"
+#include "oo.h"
 int dialogoMae(int *maexinga)
 {
     int skipado=0;

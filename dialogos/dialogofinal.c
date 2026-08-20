@@ -1,5 +1,5 @@
 #include<ncurses.h>
-#include "jogos.h"
+#include "oo.h"
 int dialogofinal(int *finais_alcancados,int *acertos)
 {nodelay(stdscr, TRUE);
     int skipado = 0;

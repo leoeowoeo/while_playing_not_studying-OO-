@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int estanteX, int estanteY, int armarioX, int armarioY, int mesaX, int mesaY, int lixoX, int lixoY)
 {// se no x ou y o jogador passar de algum dos valores do outro, ele volta pro valor anterior de x e y dele antes mesmo de printar pra voce
     // pra camaX-2 (onde começa a cama), até camaX+7 (onde ela termina)

@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"jogos.h"
+#include "oo.h"
 int recarregar(int slot,SAVE *save_atual)// a função recarrega o save
 {
     FILE *load;

@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void printar_livro(int livropickup, int *abrindolivro, int livro1, int livro2, int livro3, int livroY, int livroX )
 {
 if (livropickup == 1)

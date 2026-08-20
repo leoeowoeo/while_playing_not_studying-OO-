@@ -1,5 +1,5 @@
 #include <ncurses.h>
-#include "jogos.h"
+#include "oo.h"
 void dialogodepoisprova(int *acertos, int *maexinga, int *epilepsia)
 {
     int skipado = 0;

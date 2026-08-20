@@ -16,7 +16,7 @@
 #define COR_ESPELHO        17
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19
-#include "jogos.h"
+#include "oo.h"
 // ==================== MAIN ====================
 int main()
 {
@@ -253,7 +253,7 @@ int main()
                             case KEY_DOWN: marcar++; if (marcar > 2) marcar = 0; break;
                             case '\n':
                                 if (marcar == 0) { cobra(&save.cor, &jogarcelular5); save.atividade_sono++; marcar = 0; }
-                                if (marcar == 1 || marcar == 2) { campominado(); marcar = 0; }
+                                if (marcar == 1) {printapracelular(Xall, Yall, rodapey-5, rodapex-4); campominado(); marcar = 0; }
                                 break;
                         }
                     }

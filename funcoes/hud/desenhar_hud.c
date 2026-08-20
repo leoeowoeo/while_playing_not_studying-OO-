@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_hud(int ybarra, int xbarra, int cor, SAVE *save, int jogarcelular5, int encararespelho, int dormircama, int jogartodosjogos, int ler1jogar3, int ler3jogatodos, int ler3dormir, char *quests[])
 {
     wattroff(stdscr, COLOR_PAIR(9));

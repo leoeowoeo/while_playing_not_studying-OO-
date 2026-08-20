@@ -1,7 +1,7 @@
 #include <ncurses.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "jogos.h"
+#include "oo.h"
 
 // A implementação função fica aqui
 void pedrapapeltesoura(int *cor,int *encararespelho)

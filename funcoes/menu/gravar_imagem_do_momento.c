@@ -1,4 +1,4 @@
-#include"jogos.h"
+#include "oo.h"
 void gravar_imagem_do_momento(int xdogaroto, int ydogaroto, char imagem_do_momento[6][13])
 
 {

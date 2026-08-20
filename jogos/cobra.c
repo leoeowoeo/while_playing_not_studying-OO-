@@ -1,6 +1,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
-#include "jogos.h"
+#include "oo.h"
     #define COR_CIANO          1
     #define COR_CINZAESCURO    2
     #define COR_VERDEFOLHA     3

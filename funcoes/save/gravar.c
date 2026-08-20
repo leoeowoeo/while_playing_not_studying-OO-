@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-#include "jogos.h"
+#include "oo.h"
 int gravar(int slot, SAVE *save_atual)
 // a função salva a struct do save atual no arquivo
 {

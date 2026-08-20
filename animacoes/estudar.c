@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *estudo,int *tecla,int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check){
     nodelay(stdscr,TRUE);    
     int Xall = (COLS/2)-57, Yall = 3;

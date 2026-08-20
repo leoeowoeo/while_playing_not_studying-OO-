@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenha_borda(int x, int y)// essa função printa a borda da caixa onde aparece a imagem do momento nos salvamentos dos slots
 {
     mvaddch(y, x, ACS_ULCORNER);

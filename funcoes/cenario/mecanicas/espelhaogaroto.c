@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void espelhaogaroto(SAVE *save,int espelhox, int espelhoy, int pisca,int selecao_face,int selecao_pernas, int selecao_olhos,int passo,int vira)
 {
     if (save->x >= espelhox - 6 && save->x <= espelhox + 20 && save->y < espelhoy + 13 && vira % 2 == 1)

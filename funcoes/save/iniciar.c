@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "jogos.h"
+#include "oo.h"
 
 void iniciar(int slot, SAVE *save_atual,int *selecao_olhos, int *selecao_face,int *selecao_pernas)
 //a função inicia o struct atual quando o struct ainda não foi rodado

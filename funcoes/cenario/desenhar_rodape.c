@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void desenhar_rodape(int Xall, int Yall, int cor)
 {
     int rodapey = 9 + Yall, rodapex = 21 + Xall;

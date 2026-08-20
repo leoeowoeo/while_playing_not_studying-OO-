@@ -1,4 +1,4 @@
-#include "jogos.h"
+#include "oo.h"
 void movimentar_jogador(int tecla, int *xf, int *yf, int *passo, int *lado, int *vira, int Xall, int Yall)
 {
     switch (tecla)

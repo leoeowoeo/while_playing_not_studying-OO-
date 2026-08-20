@@ -1,5 +1,5 @@
 #include <ncurses.h>
-#include "jogos.h"
+#include "oo.h"
 int prova_complexa(SAVE *save,int *acertos) 
 {
     initscr();

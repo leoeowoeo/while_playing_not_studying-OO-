@@ -34,7 +34,6 @@ typedef struct SAVE_
         int selecao_pernas;
         int selecao_cor;
         int cor;
-
 }SAVE;
 
 int inicio(int *interage,int *iniciar,int *epilepsia,SAVE *save,int *jogar,int estanoquarto);

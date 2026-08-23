@@ -1,5 +1,26 @@
 #include "oo.h"
 
+/*
+
+TUTORIALZINHO DAS CORES NA NCURSES
+
+1 start_color()
+não tem parametro
+primeira função pra iniciar as cores ( usada de preferencia logo apos o initscr( );)
+
+init_pair(short <id do par>, short <cor do texto> , short <cor do fundo>);
+
+init_color(short < id da cor>, short<vermelho>,short<verde>,short<azul>);
+é tipo um rgb mas vai de 0 a 1000 ao inves dos 255, tudo 1000 é branco tudo 0 é preto
+
+use_default_color()
+não tem parametro, habilita o -1 nos init pair, faz pegar a cor do terminal.
+
+has_colors()
+não tem parametro, retorna valor booleano true ou false, verifica se o terminal tem suporte pra receber cores
+*/
+
+
 #define TARGET_FRAME_MS 30
 #define COR_MARROM         8
 #define COR_JANELA         9
@@ -45,16 +66,35 @@ void inicializar_cores(SAVE *save, int interage, int *par)
         init_pair(9, COR_RODAPE, -1);
         init_pair(10, COLOR_WHITE, COLOR_WHITE);
         init_pair(11, COR_ESPELHO, -1);
+        init_pair(31, -1, COR_JANELA);
         
-        // ALTERADO: Trocado -1 por COLOR_BLACK para o A_REVERSE inverter o bloco inteiro
-        init_pair(26, COLOR_BLACK, COR_CINZAESCURO);
-        init_pair(27, COLOR_BLACK, COR_CINZACLARO);
+        init_pair(26, COLOR_WHITE, COR_CINZAESCURO);
+        init_pair(27, COLOR_WHITE, COR_CINZACLARO);
         
         init_pair(16, COLOR_WHITE, COLOR_BLUE);
         init_pair(17, COLOR_WHITE, COLOR_GREEN);
         init_pair(18, COLOR_WHITE, COLOR_RED);
         init_pair(19, COLOR_WHITE, COLOR_MAGENTA);
         init_pair(20, COLOR_WHITE, COLOR_YELLOW);
+
+        init_pair(43, COLOR_CYAN,    COR_CINZAESCURO); // 1
+        init_pair(44, COLOR_GREEN,   COR_CINZAESCURO); // 2
+        init_pair(45, COLOR_YELLOW,  COR_CINZAESCURO); // 3
+        init_pair(46, COLOR_RED,     COR_CINZAESCURO); // 4
+        init_pair(47, COLOR_MAGENTA, COR_CINZAESCURO); // 5
+        init_pair(48, COLOR_CYAN,    COR_CINZAESCURO); // 6
+        init_pair(49, COLOR_YELLOW,  COR_CINZAESCURO); // 7
+        init_pair(50, COLOR_WHITE,   COR_CINZAESCURO); // 8
+
+        init_pair(51, COLOR_BLUE,    COR_CINZACLARO);  // 1
+        init_pair(52, COLOR_GREEN,   COR_CINZACLARO);  // 2
+        init_pair(53, COLOR_RED,     COR_CINZACLARO);  // 3
+        init_pair(54, COLOR_MAGENTA, COR_CINZACLARO);  // 4
+        init_pair(55, COLOR_YELLOW,  COR_CINZACLARO);  // 5
+        init_pair(56, COLOR_CYAN,    COR_CINZACLARO);  // 6
+        init_pair(57, COLOR_BLACK,   COR_CINZACLARO);  // 7
+        init_pair(58, COLOR_RED,     COR_CINZACLARO);  // 8
+
         if (interage == 1)
         {
             init_pair(12, COLOR_YELLOW, -1);
@@ -66,7 +106,6 @@ void inicializar_cores(SAVE *save, int interage, int *par)
         }
     }
 }
-
 
 /*#include "oo.h"
 #define TARGET_FRAME_MS 30

@@ -5,231 +5,374 @@
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19
 #define COR_CINZACLARO     21
-
 #define PAR_CINZAESCURO    26
 #define PAR_CINZACLARO     27
 #define PAR_VERMELHO       42
 
+#define PAR_NUM1           43 
+#define PAR_NUM2           44 
+#define PAR_NUM3           45 
+#define PAR_NUM4           46 
+#define PAR_NUM5           47 
+#define PAR_NUM6           48 
+#define PAR_NUM7           49 
+#define PAR_NUM8           50 
+
+#define PAR_NUM9           51 
+#define PAR_NUM10          52 
+#define PAR_NUM11          53 
+#define PAR_NUM12          54 
+#define PAR_NUM13          55 
+#define PAR_NUM14          56 
+#define PAR_NUM15          57
+
 typedef struct A_{
     int bomba;
     int pertobomba;
-    char sprite;
-}campo;
+    int revelado;
+    char icone;
+    int marcado;
+} campo;
 
-void geracampo(campo campo[30][30]){
-    int i,j;
-    int bomba=20;//diff facil
-    int bomba2=30;//diff medio
-    int bomba3=90;//diff dificil
-    while(bomba!=0)
-    {
-        i=rand() % 30;
-        j=rand() % 30;
-        if(campo[i][j].bomba==0)
-        {
-            campo[i][j].bomba=1;
-           
-            if(i-1>=0)
-                campo[i-1][j].pertobomba++;
-            if(i+1<=29)
-                campo[i+1][j].pertobomba++;
-            if(j-1>=0)
-                campo[i][j-1].pertobomba++;
-            if(j+1<=29)
-                campo[i][j+1].pertobomba++;
-            
-            if(i+1<=29&&j+1<=29)
-                campo[i+1][j+1].pertobomba++;
-            if(i-1>=0&&j+1<=29)
-                campo[i-1][j+1].pertobomba++;
-            if(i+1<=29&&j-1>=0)
-                campo[i+1][j-1].pertobomba++;
-            if(i-1>=0&&j-1>=0)
-                campo[i-1][j-1].pertobomba++;
-        }
-        else
-            bomba++;
-        bomba--;
-    }
-}
+void geracampo(int altura, int largura, campo matriz[altura][largura], int num_bombas);
+void inundamatriz(int altura, int largura, campo matriz[altura][largura], int x, int y);
 int campominado()
+
+// LEEEO ANTES DE QUALQUER COISA LE ISSOclear
+/*Vamo add 2 coisas pra fazer o jogo na 30 por 30 não ficar estupdamente tedioso:
+Peso nas bombas, vão ter bombas de niveis diferentes, e elas somam mais numeros, bomba nivel 1 soma 1, bomba nivel 2 soma 2, bomba nivel 3 soma 3, etc etc
+em cima vai estar escrito quanto de cada tem, e vai poder marcar os lugares com cores diferentes pra avisar cada uma.
+
+A segunda coisa, avisar quantas bombas tem em cada linha e em cada coluna.
+na borda da linha e da coluna vai ter o numero de bombas que la tem, pra agilizar o processo de jogar o jogo.*/
+
+
+
+
+// LEEEOOO parte 2
+/*vamo fazer tipo aquela questão de prova do ano passado, que inundava a matriz pra ver as queimadas e pegava a que tinha a maior e dava o resultado dela? se lembra?
+vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela como dica pra pessoa iniciar sem perder de cara
+
+*/
 {
-    srand(time(NULL));
-    WINDOW *campominado = newwin(17, 49, 6, 30);
-    
+    srand(time(NULL));    
+    int i,j;
+    int altura = 16;
+    int largura = 16;
+    int num_bombas = 35; // Ajustei para 100 pois um campo 30x30 (900 casas) com 20 bombas seria muito fácil
 
-    //31, 92, 3, 15
+    // Calcula o tamanho da janela da ncurses dinamicamente
+    // Altura = (altura do jogo) + 2 (para as bordas)
+    // Largura = (largura do jogo * 3 espaços) + 2 (para as bordas)
+    int largura_do_quadrado = 6; // largura de cada célula em caracteres (deve ser par para centralizar bem)
+    int altura_do_quadrado = 3; // altura de cada célula em linhas
+    char *opcoes[] = {"Facil", "Medio", "Dificil"};
+    int escolha = 0;
+    int dificuldade = 0;
+    int tecla_menu = 0;
+    int timer=0,velocidade_timer=0;
+    int perdeu=0;
 
+    while (tecla_menu != '\n') 
+    {
+        erase();
+        
+        mvwprintw(stdscr, 2, 4, "Selecione a Dificuldade:");
+        
+        for (int k = 0; k < 3; k++) 
+        {
+            if (k == escolha) 
+            {
+                wattron(stdscr, A_REVERSE);
+                mvwprintw(stdscr, 4 + k, 6, "> %s", opcoes[k]);
+                wattroff(stdscr, A_REVERSE);
+            } else 
+            {
+                mvwprintw(stdscr, 4 + k, 6, "  %s", opcoes[k]);
+            }
+        }
+        wrefresh(stdscr);
+        tecla_menu = wgetch(stdscr);
+        switch (tecla_menu) 
+        {
+            case KEY_UP:
+            case 'w':
+                escolha--;
+                if (escolha < 0) escolha = 2;
+                break;
+            case KEY_DOWN:
+            case 's':
+                escolha++;
+                if (escolha > 2) escolha = 0;
+                break;
+        }
+    }
+
+    dificuldade = escolha;
+    if(dificuldade==0)
+    {
+        altura = 9;
+        largura = 9;
+        num_bombas = 10;
+    }
+    else if(dificuldade==1)
+    {
+        altura = 16;
+        largura = 16;
+        num_bombas =60;
+    }
+    else
+    {
+        altura = 16;
+        largura = 30;
+        num_bombas = 70;
+    }
+    WINDOW *campominado = newwin((altura * altura_do_quadrado) + 2, (largura * largura_do_quadrado) + 2, 2, 5);
     keypad(campominado, TRUE); 
     nodelay(campominado, TRUE);
 
-    int matriz[15][16] = {0};
-    // int matriz[29][30] = {0};
-    campo campo[30][30];
-    for(int i=0;i<16;i++)
+        box(campominado, 0, 0);
+
+
+    // Declaração dinâmica da matriz (VLA)
+    campo matriz[altura][largura];
+    
+    for(i = 0; i < altura; i++)
     {
-        for(int j=0;j<16;j++)
+        for(j = 0; j < largura; j++)
         {
-            campo[i][j].bomba=0;
-            campo[i][j].pertobomba=0;
+            matriz[i][j].bomba = 0; // pode ser 1 ou 0, mas futuramente pode ter valor atpe 3
+            matriz[i][j].pertobomba = 0;// de 0 a 8, mas pode aumentar com os pesos das bombas quando tivermos
+            matriz[i][j].revelado = 0;// 1 ou 0.
+            matriz[i][j].marcado = 0;
         }
     }
-    geracampo(campo);
+    
+    geracampo(altura, largura, matriz, num_bombas);
+    
     int selecaoX = 0; 
     int selecaoY = 0;
     int tecla = 0;
-    int timer = 0;
-    int velocidade = 0;
 
     flushinp();
 
-    while (tecla != 'p')
-    {
-        tecla = wgetch(campominado);
-        werase(campominado);
-
-
-        /*for(int i=0;i<30;i++){
-            for(int j=0;j<30;j++){
-                if(campo[i][j].bomba==1)
-
-                mvwprintw(campominado,j,i,"%d",campo[i][j].bomba);
-            }
-        }*/
-        for (int j = 1; j < 16; j++)
+while (tecla != 'p')
         {
-            for (int i = 1; i < 49; i += 3)
-            {// o i ta vezes 3 pra ficar proximo de um quadrado, mas não pode ser 2 pq os numeros não
-                int atualX = i / 3;// vao ficar centralizados.
-                int atualY = j - 1;// ta nesse modelo de i/3 pra isso, já que a movimentação não vai contar  
-                                   // com os espaços, já que eu to fazendo uma matriz 30/30 mas a linha tem "3X" mais do que a coluna so pelo front, mas no fundo ele tem que ser 30x30 msm
-                // Lógica de cores alternadas (xadrez)
-                int par_de_cores;
-                if ((atualX + atualY) % 2 == 0) {
-                    par_de_cores = PAR_CINZAESCURO;
-                } else {
-                    par_de_cores = PAR_CINZACLARO;
-                }
+            //timer
+            velocidade_timer++;
+            if(velocidade_timer%33==0)
+                timer++;
+            tecla = wgetch(campominado);
 
-                // Verifica se o cursor do jogador está nesta célula
-                if (atualX == selecaoX && atualY == selecaoY)
+            if(perdeu==1)
+            {
+                for(i=0;i<altura;i++)
                 {
-                    wattron(campominado, COLOR_PAIR(par_de_cores) | A_REVERSE); 
-                    mvwprintw(campominado, j, i, "   "); 
-                    wattroff(campominado, COLOR_PAIR(par_de_cores) | A_REVERSE);    
+                    for(j=0;j<largura;j++)
+                    {
+                        if(matriz[i][j].bomba==1)
+                        {
+                            matriz[i][j].revelado=1;
+                        }
+                    }
                 }
-                else
+            }
+
+            werase(campominado);
+            
+            for (int y = 0; y < altura; y++)
+            {
+                for (int x = 0; x < largura; x++)
                 {
-                    wattron(campominado, COLOR_PAIR(par_de_cores));
-                    mvwprintw(campominado, j, i, "   ");
-                    wattroff(campominado, COLOR_PAIR(par_de_cores));
-                    if(campo[j-1][i/3].bomba==1){
-                    mvwprintw(campominado,j,i," @ ");
-                    if(campo[j-1][i/3].pertobomba > 0 && campo[j-1][i/3].bomba != 1){
-                        mvwprintw(campominado, j, i, " %d ", campo[j-1][i/3].pertobomba);
+                    int posY = (y * altura_do_quadrado) + 1;
+                    int posX = (x * largura_do_quadrado) + 1;
+
+                    int par_de_cores = ((x + y) % 2 == 0) ? PAR_CINZAESCURO : PAR_CINZACLARO;
+                    int e_selecionado = (x == selecaoX && y == selecaoY);
+
+                    // Define o estilo base da célula (com A_REVERSE mais visível se selecionado)
+                    int estilo_base = COLOR_PAIR(par_de_cores);
+                    if (e_selecionado) estilo_base |= A_REVERSE;
+
+                    wattron(campominado, estilo_base);
+
+                    if (matriz[y][x].revelado == 1 && matriz[y][x].bomba == 0 && matriz[y][x].pertobomba == 0) {
+                        wattroff(campominado, estilo_base);
+                        
+                        int estilo_vazio = COLOR_PAIR(31);
+                        if (e_selecionado) estilo_vazio |= A_REVERSE;
+                        
+                        wattron(campominado, estilo_vazio);
+                        for (int h = 0; h < altura_do_quadrado; h++) {
+                            mvwprintw(campominado, posY + h, posX, "      "); 
+                        }
+                        wattroff(campominado, estilo_vazio);
+                    } 
+                    else 
+                    {
+                        for (int h = 0; h < altura_do_quadrado; h++) {
+                            mvwprintw(campominado, posY + h, posX, "      "); 
+                        }
+
+                        if (matriz[y][x].revelado == 0)
+                        {
+                            if (matriz[y][x].marcado == 1) {
+                                mvwprintw(campominado, posY + 1, posX + 2, "!");
+                            } else if (matriz[y][x].marcado == 2) {
+                                mvwprintw(campominado, posY + 1, posX + 2, "?");
+                            }
+                        }
+
+                        if (matriz[y][x].revelado == 1) 
+                        {
+                            if (matriz[y][x].bomba == 1) 
+                            {
+                                wattroff(campominado, estilo_base);
+
+                                int estilo_bomba = COLOR_PAIR(PAR_VERMELHO) | A_BOLD;
+                                if (e_selecionado) estilo_bomba |= A_REVERSE;
+
+                                wattron(campominado, estilo_bomba);
+                                mvwprintw(campominado, posY + 1, posX + 2, "@");
+                                wattroff(campominado, estilo_bomba);
+
+                                wattron(campominado, estilo_base);
+                            } 
+                            else if (matriz[y][x].pertobomba > 0) 
+                            {
+                                wattroff(campominado, estilo_base);
+
+                                int cor_do_numero = 42 + matriz[y][x].pertobomba; // 43 a 50
+                                if ((x + y) % 2 != 0) cor_do_numero += 8;         // 51 a 58 para fundo claro
+
+                                // Adicionado A_BOLD e tratamento limpo com A_REVERSE quando selecionado
+                                int estilo_numero = COLOR_PAIR(cor_do_numero) | A_BOLD;
+                                if (e_selecionado) {
+                                    estilo_numero |= A_REVERSE;
+                                }
+
+                                wattron(campominado, estilo_numero);
+                                mvwprintw(campominado, posY + 1, posX + 2, "%d", matriz[y][x].pertobomba);
+                                wattroff(campominado, estilo_numero);
+
+                                wattron(campominado, estilo_base);
+                            }
+                        }
                     }
 
-                }
+                    wattroff(campominado, estilo_base);
                 }
             }
+
+            box(campominado, 0, 0);
+            mvwprintw(campominado, 0, 2, " Tempo: %d ", timer);
+            wrefresh(campominado);
+
+            if(perdeu>=1)
+            {   
+                perdeu++;
+                napms(1000);
+            }
+
+            switch (tecla)
+            {
+                case KEY_LEFT:
+                case 'a':
+                    selecaoX--;
+                    if (selecaoX < 0) selecaoX = largura - 1;
+                    break;
+
+                case KEY_RIGHT:
+                case 'd':
+                    selecaoX++;
+                    if (selecaoX >= largura) selecaoX = 0;
+                    break;
+
+                case KEY_UP:
+                case 'w':
+                    selecaoY--;
+                    if (selecaoY < 0) selecaoY = altura - 1;
+                    break;
+
+                case KEY_DOWN:
+                case 's':
+                    selecaoY++;
+                    if (selecaoY >= altura) selecaoY = 0;
+                    break;
+
+                case '\n': inundamatriz(altura, largura, matriz,selecaoY,selecaoX);
+                    matriz[selecaoY][selecaoX].revelado = 1;
+                    if(matriz[selecaoY][selecaoX].bomba==1){
+                        perdeu=1;
+                    }
+                    break;
+                case ' ':
+                    matriz[selecaoY][selecaoX].marcado++;
+                    if(matriz[selecaoY][selecaoX].marcado>2)
+                        matriz[selecaoY][selecaoX].marcado=0;
+                    if(matriz[selecaoY][selecaoX].marcado<0)
+                        matriz[selecaoY][selecaoX].marcado=2;
+                    break;
+            }
+            napms(30);
+
+                    
+            if(perdeu==3)
+            {
+                werase(campominado);
+                mvwprintw(campominado, (altura * altura_do_quadrado) / 2, 2, "Voce perdeu");
+                wrefresh(campominado); 
+                napms(2000);
+                break;
+            }
         }
-        
-        box(campominado, 0, 0);
-        wrefresh(campominado);
-
-        wattron(campominado,COLOR_PAIR(PAR_VERMELHO));
-        mvwprintw(campominado,0,0,"timer:%d",timer);
-        wattroff(campominado,COLOR_PAIR(PAR_VERMELHO));
-
-        // Movimentação
-        switch (tecla)
-        {
-            case KEY_LEFT:
-            case 'a':
-                selecaoX--;
-                if (selecaoX < 0) selecaoX = 16 - 1;
-                break;
-
-            case KEY_RIGHT:
-            case 'd':
-                selecaoX++;
-                if (selecaoX >= 16) selecaoX = 0;
-                break;
-
-            case KEY_UP:
-            case 'w':
-                selecaoY--;
-                if (selecaoY < 0) selecaoY = 15 - 1;
-                break;
-
-            case KEY_DOWN:
-            case 's':
-                selecaoY++;
-                if (selecaoY >= 16) selecaoY = 0;
-                break;
-
-            case '\n':
-
-            case ' ':
-                matriz[selecaoY][selecaoX] = 1; 
-                break;
-        }
-
-        napms(30);
-    }
 
     delwin(campominado);
     return 0;
 }
 
-/*#include "oo.h"
+void geracampo(int altura, int largura, campo matriz[altura][largura], int num_bombas){
+    int i, j;
+    int bombaplaced = 0;
 
-#define COR_CIANO          18
-#define COR_CINZAESCURO    19
-#define COR_CINZACLARO     21
+    while (bombaplaced < num_bombas) {
+        i = rand() % altura;
+        j = rand() % largura;
 
-#define PAR_CINZAESCURO    26
-#define PAR_CINZACLARO     27
-#define COR_VERMELHO       42
-
-int campominado()
-{
-    WINDOW *campominado = newwin(30, 92, 3, 15);
-
-    init_color(COR_CINZAESCURO, 700, 700, 700);
-    init_color(COR_CINZACLARO, 800, 800, 800);
-    init_color(COR_VERMELHO,1000,0,0);
-    
-    int i, j, tecla = 0,timer=0,velocidade=0;
-    flushinp();
-
-    while (tecla != 'p')
-    {               
-        werase(campominado);
-
-        for (j = 1; j < 30; j++)
-        {
-            for (i = 1; i < 90; i += 3)
-            {   
-                int par = ((i / 3 + j) % 2 == 0) ? PAR_CINZAESCURO : PAR_CINZACLARO;
-
-                wattron(campominado, COLOR_PAIR(par));
-                mvwprintw(campominado, j, i, "   "); 
-                wattroff(campominado, COLOR_PAIR(par));
-            }
+        if (matriz[i][j].bomba == 0) {
+            matriz[i][j].bomba = 1;
+            bombaplaced++;
+            
+            if(i-1 >= 0) matriz[i-1][j].pertobomba++;
+            if(i+1 < altura) matriz[i+1][j].pertobomba++;
+            if(j-1 >= 0) matriz[i][j-1].pertobomba++;
+            if(j+1 < largura) matriz[i][j+1].pertobomba++;
+            
+            if(i+1 < altura && j+1 < largura) matriz[i+1][j+1].pertobomba++;
+            if(i-1 >= 0 && j+1 < largura) matriz[i-1][j+1].pertobomba++;
+            if(i+1 < altura && j-1 >= 0) matriz[i+1][j-1].pertobomba++;
+            if(i-1 >= 0 && j-1 >= 0) matriz[i-1][j-1].pertobomba++;
         }
-        watrron(campominado,COLOR_PAIR(COR_VERMELHO));
-        mvprintw(0,0,"%d",timer);
-        watrroff(campominado,COLOR_PAIR(COR_VERMELHO));
-        velocidade++;
-        if(velocidade%18==0){
-            timer++;
-        }
-        box(campominado, 0, 0);
-        wrefresh(campominado);
-        
-        tecla = getch();
-        napms(60);
     }
-    return 0;
-}*/
+}
+
+void inundamatriz(int altura, int largura, campo matriz[altura][largura], int y, int x) {
+    if (y < 0 || y >= altura || x < 0 || x >= largura) {
+        return;
+    }
+    if (matriz[y][x].pertobomba >= 1 && matriz[y][x].revelado == 0 && matriz[y][x].bomba == 0) { 
+        matriz[y][x].revelado = 1;
+        return;
+    }
+
+    if (matriz[y][x].revelado == 1) {
+        return;
+    }
+
+    matriz[y][x].revelado = 1; // revela o quadrado que ela chegou independente
+    
+    inundamatriz(altura, largura, matriz, y - 1, x);
+    inundamatriz(altura, largura, matriz, y + 1, x);
+    inundamatriz(altura, largura, matriz, y, x + 1);
+    inundamatriz(altura, largura, matriz, y, x - 1);
+}

@@ -1,7 +1,7 @@
 #include "oo.h"
 void desenhar_armario(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par)
 {
-    int armarioY = 12 + Yall, armarioX = 19 + Xall;
+    int armarioY = 12 + Yall, armarioX = 6 + Xall;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(6));
     if (armarioaberto == 1)
     {

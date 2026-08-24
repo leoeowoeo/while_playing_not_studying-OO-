@@ -1,9 +1,20 @@
 #include "oo.h"
-void desenhar_jogador(SAVE *save, int vira, int passo, int pisca, int cor, int selecao_face, int selecao_olhos, int selecao_pernas)
+
+void desenhar_jogador(SAVE *save, int vira, int passo, int pisca, int cor, int selecao_face, int selecao_olhos, int selecao_pernas, int virahoriz)
 {
     char *olhos[10] = {"##", "@@", "**", "$$", "vv", "><", "XX", "OO", "00", "oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >", "d  b"};
     char *pernas[4] = {"/|", "|\\", "<v", "v>"};
+
+    // Ativa itálico se estiver indo para a esquerda (virahoriz == 1), desliga se não
+    if (virahoriz == 1)
+    {
+        wattron(stdscr, A_ITALIC);
+    }
+    else
+    {
+        wattroff(stdscr, A_ITALIC);
+    }
 
     if (save->celularpickup == 0)
     {
@@ -53,4 +64,8 @@ void desenhar_jogador(SAVE *save, int vira, int passo, int pisca, int cor, int s
             else mvprintw(save->y+1, save->x+1, "%s", pernas[selecao_pernas+1]);
         }
     }
+
+    // Desliga o itálico e força o reset completo dos atributos da tela
+    wattroff(stdscr, A_ITALIC);
+    wattrset(stdscr, A_NORMAL);
 }

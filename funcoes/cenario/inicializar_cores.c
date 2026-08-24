@@ -56,7 +56,7 @@ void inicializar_cores(SAVE *save, int interage, int *par)
         init_color(COR_CIANO, 0, 1000, 1000);
         init_color(COR_CINZACLARO, 850, 850, 850);
         init_color(COR_CINZAESCURO, 700, 700, 700);
-        init_color(COR_CINZAMTESCUROMEIOMARROM, 500, 450, 400);
+        init_color(COR_CINZAMTESCUROMEIOMARROM, 600, 500, 300);
         
         init_pair(1, COR_RODAPE, -1);
         init_pair(2, COR_JANELA, -1);

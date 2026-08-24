@@ -72,7 +72,7 @@ int main()
     };
     int finais_alcancados;
     char *revista[9] = {"1", "2", "3", "4", "5", "6"};
-    int passo = 0, vira = 0;
+    int passo = 0, vira = 0,virahoriz=0;
     int check = 0;
     int espelho = 0;
     int marcar = 0;
@@ -185,15 +185,16 @@ int main()
                     int portaY = 3 + Yall, portaX = 11 + Xall;
                     int gatoy = armarioY + 13, gatox = armarioX + 10;
                     //==========================DESENHA O QUARTO===========================
+                    desenhar_rodape(Xall, Yall,save.cor);
                     desenhar_cama(Xall, Yall,save.cor, interagirCam, par);
                     desenhar_estante(Xall, Yall,save.cor, interagirEst, par, &save, celularX, celularY);
                     desenhar_mesa(Xall, Yall,save.cor);
                     
-                    espelhaogaroto(&save, espelhox, espelhoy, pisca,save.selecao_face,save.selecao_pernas,save.selecao_olhos,passo,vira);
+                    espelhaogaroto(&save, espelhox, espelhoy, pisca,save.selecao_face,save.selecao_pernas,save.selecao_olhos,passo,vira,virahoriz);
                     desenhar_espelho(Xall, Yall,save.cor, par);
                     desenhar_janela(Xall, Yall,save.cor,save.janelaaberta, interagirJan, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
                     //void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagirJan, int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check)
-                    desenhar_rodape(Xall, Yall,save.cor);
+                    
                     desenhar_armario(Xall, Yall,save.cor, armarioaberto, interagirArm, par);
                     desenhar_porta(Xall, Yall,save.cor,save.depoisprova,save.maepistoladef,maexinga, acertos);
                     //void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos)
@@ -201,7 +202,7 @@ int main()
                     desenhar_tapete(Xall, Yall,save.cor);
                     desenhar_gato(Xall, Yall, armarioX, armarioY, vontadedepisca, save.depoisprova);
                     desenhar_celular_mesa(Xall, Yall,&save, celularX, celularY, interagirCel, par);
-                    desenhar_jogador(&save, vira, passo, pisca,save.cor, save.selecao_face, save.selecao_olhos, save.selecao_pernas);
+                    desenhar_jogador(&save, vira, passo, pisca,save.cor, save.selecao_face, save.selecao_olhos, save.selecao_pernas,virahoriz);
                     desenhar_hud(ybarra, xbarra,save.cor, &save, jogarcelular5, encararespelho, dormircama, jogartodosjogos, ler1jogar3, ler3jogatodos, ler3dormir, quests);
                     if(save.celularpickup==1) printar_celular(save,celularX,celularY);
                     check++;//fazer chover
@@ -210,7 +211,7 @@ int main()
                     save.maepistola++;//mae fechar a porta
                     // ===== MOVIMENTAÇÃO =====
                     tecla = getch();
-                    movimentar_jogador(tecla, &xf, &yf, &passo, &lado, &vira, Xall, Yall);
+                    movimentar_jogador(tecla, &xf, &yf, &passo, &lado, &vira, Xall, Yall,&virahoriz);
                     check++;
                     if (check > 100) { check = 0; passo = 0; }
 

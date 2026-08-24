@@ -1,13 +1,13 @@
 #include "oo.h"
 void desenhar_tapete(int Xall, int Yall, int cor)
 {
-    int tapetey = 18 + Yall, tapetex = 45 + Xall;
+    int tapetey = 18 + Yall, tapetex = 47 + Xall;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(8));
-    mvprintw(tapetey, tapetex, "  I~~~~~~~~~~~~~I ");
-    mvprintw(tapetey+1, tapetex, "  |    ~~~      | ");
-    mvprintw(tapetey+2, tapetex, "  |       ~~~~  | ");
-    mvprintw(tapetey+3, tapetex, "  |  ~~~        | ");
-    mvprintw(tapetey+4, tapetex, "  |      ~~~~   | ");
-    mvprintw(tapetey+5, tapetex, "  I~~~~~~~~~~~~~I ");
+    mvprintw(tapetey, tapetex,        ",~~~~~~~~~~~~~,");
+    mvprintw(tapetey+1, tapetex-1,     "/    ~~~      /");
+    mvprintw(tapetey+2, tapetex-2,    "/       ~~~~  /");
+    mvprintw(tapetey+3, tapetex-3,   "/  ~~~        /");
+    mvprintw(tapetey+4, tapetex-4,  "/      ~~~~   /");
+    mvprintw(tapetey+5, tapetex-5, "'~~~~~~~~~~~~~'");
     wattroff(stdscr, COLOR_PAIR(8));
 }

@@ -1,38 +1,56 @@
 #include "oo.h"
-void espelhaogaroto(SAVE *save,int espelhox, int espelhoy, int pisca,int selecao_face,int selecao_pernas, int selecao_olhos,int passo,int vira)
+
+void espelhaogaroto(SAVE *save, int espelhox, int espelhoy, int pisca, int selecao_face, int selecao_pernas, int selecao_olhos, int passo, int vira, int virahoriz)
 {
+    // Ativa itálico se estiver indo para a esquerda (virahoriz == 1), desliga se não
+    if (virahoriz == 1)
+    {
+        wattron(stdscr, A_ITALIC);
+    }
+    else
+    {
+        wattroff(stdscr, A_ITALIC);
+    }
+
     if (save->x >= espelhox - 6 && save->x <= espelhox + 20 && save->y < espelhoy + 13 && vira % 2 == 1)
-                    {
-                        int reflexx = save->x;
-                        int distancia = save->y - espelhoy;
-                        int reflexy = (espelhoy + 4) - (distancia / 3);
-                        if (reflexy < espelhoy + 1) reflexy = espelhoy + 1;
-                        if (reflexy > espelhoy + 4) reflexy = espelhoy + 4;
-                        if (reflexx < espelhox) reflexx = espelhox;
-                        if (reflexx > espelhox + 9) reflexx = espelhox + 9;
-                        if (vira % 2 == 1 && save->x >= espelhox && save->x <= espelhox + 7)
-                        {
-                            int borda1 = espelhox, borda2 = espelhox + 10;
-                            if (reflexx >= borda1 && reflexx <= borda2)
-                            {
-                                if (save->celularpickup == 1)
-                                {
-                                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx-2, "[]%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", save->olhos[selecao_olhos]); }
-                                    else { mvprintw(reflexy, reflexx-2, "[]%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
-                                }
-                                else if (save->revistapickup == 1 || save->livropickup == 1)
-                                {
-                                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx-3, "[I]%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", save->olhos[selecao_olhos]); }
-                                    else { mvprintw(reflexy, reflexx-3, "[I]%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
-                                }
-                                else
-                                {
-                                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx, "%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", save->olhos[selecao_olhos]); }
-                                    else { mvprintw(reflexy, reflexx, "%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
-                                }
-                                if (passo % 2 == 0) mvprintw(reflexy+1, reflexx+1, "%s", save->pernas[selecao_pernas]);
-                                else mvprintw(reflexy+1, reflexx+1, "%s", save->pernas[selecao_pernas+1]);
-                            }
-                        }
-                    }
+    {
+        int reflexx = save->x;
+        int distancia = save->y - espelhoy;
+        int reflexy = (espelhoy + 4) - (distancia / 3);
+
+        if (reflexy < espelhoy + 1) reflexy = espelhoy + 1;
+        if (reflexy > espelhoy + 4) reflexy = espelhoy + 4;
+        if (reflexx < espelhox) reflexx = espelhox;
+        if (reflexx > espelhox + 9) reflexx = espelhox + 9;
+
+        if (vira % 2 == 1 && save->x >= espelhox && save->x <= espelhox + 7)
+        {
+            int borda1 = espelhox, borda2 = espelhox + 10;
+            if (reflexx >= borda1 && reflexx <= borda2)
+            {
+                if (save->celularpickup == 1)
+                {
+                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx-2, "[]%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", save->olhos[selecao_olhos]); }
+                    else { mvprintw(reflexy, reflexx-2, "[]%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
+                }
+                else if (save->revistapickup == 1 || save->livropickup == 1)
+                {
+                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx-3, "[I]%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", save->olhos[selecao_olhos]); }
+                    else { mvprintw(reflexy, reflexx-3, "[I]%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
+                }
+                else
+                {
+                    if (pisca % 2 == 1) { mvprintw(reflexy, reflexx, "%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "%s", save->olhos[selecao_olhos]); }
+                    else { mvprintw(reflexy, reflexx, "%s", save->faces[selecao_face]); mvprintw(reflexy, reflexx+1, "--"); }
+                }
+
+                if (passo % 2 == 0) mvprintw(reflexy+1, reflexx+1, "%s", save->pernas[selecao_pernas]);
+                else mvprintw(reflexy+1, reflexx+1, "%s", save->pernas[selecao_pernas+1]);
+            }
+        }
+    }
+
+    // Desliga o itálico e restaura os atributos normais da tela
+    wattroff(stdscr, A_ITALIC);
+    wattrset(stdscr, A_NORMAL);
 }

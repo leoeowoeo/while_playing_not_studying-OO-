@@ -32,6 +32,7 @@ typedef struct A_{
     int revelado;
     char icone;
     int marcado;
+    int quadradoachado;
 } campo;
 
 void geracampo(int altura, int largura, campo matriz[altura][largura], int num_bombas);
@@ -55,6 +56,7 @@ vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela 
 
 */
 {
+
     srand(time(NULL));    
     int i,j;
     int altura = 16;
@@ -145,6 +147,7 @@ vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela 
             matriz[i][j].pertobomba = 0;// de 0 a 8, mas pode aumentar com os pesos das bombas quando tivermos
             matriz[i][j].revelado = 0;// 1 ou 0.
             matriz[i][j].marcado = 0;
+            matriz[i][j].quadradoachado=0;
         }
     }
     
@@ -155,6 +158,7 @@ vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela 
     int tecla = 0;
 
     flushinp();
+
 
 while (tecla != 'p')
         {
@@ -186,16 +190,21 @@ while (tecla != 'p')
                 {
                     int posY = (y * altura_do_quadrado) + 1;
                     int posX = (x * largura_do_quadrado) + 1;
-
-                    int par_de_cores = ((x + y) % 2 == 0) ? PAR_CINZAESCURO : PAR_CINZACLARO;
+                    
+                    int par_de_cores;
+                    if((x + y) % 2 == 0)
+                        {par_de_cores = PAR_CINZAESCURO;}
+                    else
+                        {par_de_cores = PAR_CINZACLARO; }
+                    
                     int e_selecionado = (x == selecaoX && y == selecaoY);
-
-                    // Define o estilo base da célula (com A_REVERSE mais visível se selecionado)
+                    
+                    
                     int estilo_base = COLOR_PAIR(par_de_cores);
                     if (e_selecionado) estilo_base |= A_REVERSE;
-
+                    
                     wattron(campominado, estilo_base);
-
+                    
                     if (matriz[y][x].revelado == 1 && matriz[y][x].bomba == 0 && matriz[y][x].pertobomba == 0) {
                         wattroff(campominado, estilo_base);
                         
@@ -213,7 +222,7 @@ while (tecla != 'p')
                         for (int h = 0; h < altura_do_quadrado; h++) {
                             mvwprintw(campominado, posY + h, posX, "      "); 
                         }
-
+                        
                         if (matriz[y][x].revelado == 0)
                         {
                             if (matriz[y][x].marcado == 1) {
@@ -222,39 +231,39 @@ while (tecla != 'p')
                                 mvwprintw(campominado, posY + 1, posX + 2, "?");
                             }
                         }
-
+                        
                         if (matriz[y][x].revelado == 1) 
                         {
                             if (matriz[y][x].bomba == 1) 
                             {
                                 wattroff(campominado, estilo_base);
-
+                                
                                 int estilo_bomba = COLOR_PAIR(PAR_VERMELHO) | A_BOLD;
                                 if (e_selecionado) estilo_bomba |= A_REVERSE;
-
+                                
                                 wattron(campominado, estilo_bomba);
                                 mvwprintw(campominado, posY + 1, posX + 2, "@");
                                 wattroff(campominado, estilo_bomba);
-
+                                
                                 wattron(campominado, estilo_base);
                             } 
                             else if (matriz[y][x].pertobomba > 0) 
                             {
                                 wattroff(campominado, estilo_base);
-
+                                
                                 int cor_do_numero = 42 + matriz[y][x].pertobomba; // 43 a 50
                                 if ((x + y) % 2 != 0) cor_do_numero += 8;         // 51 a 58 para fundo claro
-
+                                
                                 // Adicionado A_BOLD e tratamento limpo com A_REVERSE quando selecionado
                                 int estilo_numero = COLOR_PAIR(cor_do_numero) | A_BOLD;
                                 if (e_selecionado) {
                                     estilo_numero |= A_REVERSE;
                                 }
-
+                                
                                 wattron(campominado, estilo_numero);
                                 mvwprintw(campominado, posY + 1, posX + 2, "%d", matriz[y][x].pertobomba);
                                 wattroff(campominado, estilo_numero);
-
+                                
                                 wattron(campominado, estilo_base);
                             }
                         }
@@ -356,7 +365,8 @@ void geracampo(int altura, int largura, campo matriz[altura][largura], int num_b
     }
 }
 
-void inundamatriz(int altura, int largura, campo matriz[altura][largura], int y, int x) {
+void inundamatriz(int altura, int largura, campo matriz[altura][largura], int y, int x) 
+{
     if (y < 0 || y >= altura || x < 0 || x >= largura) {
         return;
     }
@@ -376,3 +386,29 @@ void inundamatriz(int altura, int largura, campo matriz[altura][largura], int y,
     inundamatriz(altura, largura, matriz, y, x + 1);
     inundamatriz(altura, largura, matriz, y, x - 1);
 }
+
+void achamaior(int altura, int largura, campo matriz[altura][largura], int y, int x,int quadrados)
+{
+    if(matriz[y][x].quadradoachado==1)
+    {
+        return;
+    }
+
+    if (y < 0 || y >= altura || x < 0 || x >= largura) 
+    {
+        return;
+    }
+
+    if (matriz[y][x].pertobomba >= 1 && matriz[y][x].bomba == 0) 
+    { 
+        quadrados++;
+        return;
+    }
+    quadrados++;
+    matriz[y][x].quadradoachado=1;
+    achamaior(altura, largura, matriz, y - 1, x,quadrados);
+    achamaior(altura, largura, matriz, y + 1, x,quadrados);
+    achamaior(altura, largura, matriz, y, x + 1,quadrados);
+    achamaior(altura, largura, matriz, y, x - 1,quadrados);
+}
+//achamaior(altura, largura, matriz, y - 1, x,quadrados);

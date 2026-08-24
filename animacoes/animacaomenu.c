@@ -4,6 +4,7 @@ void animacaomenu(int yselecao,int xselecao)
 {
     nodelay(stdscr,TRUE);
     keypad(stdscr,TRUE);
+    wattron(stdscr, A_BOLD);
 mvprintw(yselecao-5, xselecao - 39, "                        ,,         ,,   ,,              ..           ,,                      ,,                     ..      ");
 mvprintw(yselecao-4, xselecao - 39, "`7MMF'     A     `7MF'`7MM         db `7MM            pd'`7MM\"\"\"Mq.`7MM                      db                      `bq    ");
 mvprintw(yselecao-3, xselecao - 39, "  `MA     ,MA     ,V    MM              MM           6P    MM   `MM. MM                                                YA   ");
@@ -25,7 +26,7 @@ mvprintw(yselecao+12, xselecao - 39, "   MM   db   M9mmmP'   `Mbmo  `Mbod\"YML.`
 mvprintw(yselecao+13, xselecao - 39, "   YM                                               ,V                      6'     dP   Yq.                       .pY   ,j M9   ");
 mvprintw(yselecao+14, xselecao - 39, "    `bm                                          OOb\"                       Ybmmmd'       ``                     ''     'md'    ");
 wrefresh(stdscr);
-
+    wattroff(stdscr, A_BOLD);
         mvprintw(yselecao+20,xselecao-8,"JOGAR");
         mvprintw(yselecao+20+2,xselecao-8,"OPCOES");
         mvprintw(yselecao+20+4,xselecao-8,"CREDITOS");

@@ -3,7 +3,7 @@ void desenhar_gato(int Xall, int Yall, int armarioX, int armarioY, int vontadede
 {
     int gatoy = armarioY + 13, gatox = armarioX + 10;
     if (depoisprova == 0)
-    {
+    {wattron(stdscr, A_ITALIC);
         mvprintw(gatoy, gatox, "(\\   /)");
         mvprintw(gatoy+1, gatox, "(=*.*=)");
         mvprintw(gatoy+2, gatox, " (\") (\")_/");
@@ -13,5 +13,6 @@ void desenhar_gato(int Xall, int Yall, int armarioX, int armarioY, int vontadede
             meow++;
             if (meow >= 3 && meow <= 4) { mvprintw(gatoy-1, gatox+3, "MEOW"); meow = 0; }
         }
+        wattron(stdscr, A_ITALIC);
     }
 }

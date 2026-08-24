@@ -1,9 +1,8 @@
 #include "oo.h"
 void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int estanteX, int estanteY, int armarioX, int armarioY, int mesaX, int mesaY, int lixoX, int lixoY)
-{// se no x ou y o jogador passar de algum dos valores do outro, ele volta pro valor anterior de x e y dele antes mesmo de printar pra voce
-    // pra camaX-2 (onde começa a cama), até camaX+7 (onde ela termina)
-    // pra camaY (onde começa a cama), até camaY+3 [onde acaba a parte da cama que o jogador deve colidir(o estofado com o pano)]
-    // se o valor de x e y do jogador for igual a um desses valores
+{   
+      int Xall = (COLS/2)-57;
+      int Yall = 3;  
     for (int i = camaX - 2; i <= camaX + 8; i++)
         for (int j = camaY; j <= camaY + 3; j++)
         {
@@ -16,23 +15,23 @@ void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int 
             if (*xf == i && *yf == j && (*xf - save->x) != 0) *xf = save->x;
             else if (*xf == i && *yf == j && (*yf - save->y) != 0) *yf = save->y;
         }
-    for (int i = armarioX - 2; i <= armarioX + 5; i++)
+    /*for (int i = armarioX - 2; i <= armarioX + 5; i++)
         for (int j = armarioY + 5; j <= armarioY + 7; j++)
         {
             if (*xf == i && *yf == j && (*xf - save->x) != 0) *xf = save->x;
             else if (*xf == i && *yf == j && (*yf - save->y) != 0) *yf = save->y;
-        }
+        }*/
         
 
 
 
-        for (int i = armarioX - 2; i <= armarioX + 5; i++)
+        /*for (int i = armarioX - 2; i <= armarioX + 5; i++)
         for (int j = armarioY + 5; j <= armarioY + 7; j++)
         {
             if (*xf == i && *yf == j && (*xf - save->x) != 0) *xf = save->x;
             else if (*xf == i && *yf == j && (*yf - save->y) != 0) *yf = save->y;
-        }
-    
+        }*/
+
 
         
     for (int i = mesaX - 1; i <= mesaX + 5; i++)
@@ -47,4 +46,24 @@ void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int 
             if (*xf == i && *yf == j && (*xf - save->x) != 0) *xf = save->x;
             else if (*xf == i && *yf == j && (*yf - save->y) != 0) *yf = save->y;
         }
+
+    for (int rx = 21+Xall-2, ry = 10+Yall-2; ry < 31+3; ry++, rx--)
+    {
+        if (*xf == rx && *yf == ry && (*xf - save->x) != 0) *xf = save->x;
+        else if (*xf == rx && *yf == ry && (*yf - save->y) != 0) *yf = save->y;
+    }
+    for (int rx = 21+Xall-2+72, ry = 10+Yall-2; ry < 31+3; ry++, rx--)
+    {
+        if (*xf == rx && *yf == ry && (*xf - save->x) != 0) *xf = save->x;
+        else if (*xf == rx && *yf == ry && (*yf - save->y) != 0) *yf = save->y;
+    }
+
+    for (int rx = 21+Xall-2+2, ry = 12+Yall; ry <12+Yall; ry++, rx--)
+    {
+        if (*xf == rx && *yf == ry && (*xf - save->x) != 0) *xf = save->x;
+        else if (*xf == rx && *yf == ry && (*yf - save->y) != 0) *yf = save->y;
+    }
+    //armarioY+8
+    //int armarioY = 12 + Yall
+    
 }

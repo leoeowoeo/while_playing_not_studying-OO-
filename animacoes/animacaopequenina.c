@@ -8,6 +8,7 @@
         int lugar=-3;
         int parar=0;
         int tecla;
+            wattron(stdscr, A_BOLD);
 for(int i=0;i<7&&parar==0;i++,passo++)
     {
         tecla=getch();
@@ -145,6 +146,7 @@ for(int i=0;i<xselecao-13&&parar==0;i++,passo++)
         wrefresh(stdscr);
         napms(25);
     }
+        wattroff(stdscr, A_BOLD);
 mvprintw(yselecao+20,andar, "     ");
 mvprintw(yselecao+21,andar, "     ");
 wrefresh(stdscr);

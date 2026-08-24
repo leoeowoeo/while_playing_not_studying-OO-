@@ -3,7 +3,7 @@ void desenhar_rodape(int Xall, int Yall, int cor)
 {
     int rodapey = 9 + Yall, rodapex = 41 + Xall;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(9));
-    mvprintw(rodapey+21, rodapex-41, "_____________________________________________________________________");
+    mvprintw(rodapey+21, rodapex-41, "_______________________________________________________________________");
     for (rodapex=Xall+24; rodapex < 93 + Xall; rodapex++)
     {
         if(rodapex < 92 + Xall)

@@ -12,7 +12,7 @@ void espelhaogaroto(SAVE *save, int espelhox, int espelhoy, int pisca, int selec
         wattroff(stdscr, A_ITALIC);
     }
 
-    if (save->x >= espelhox - 6 && save->x <= espelhox + 20 && save->y < espelhoy + 13 && vira % 2 == 1)
+    if (save->x >= espelhox-5 - 6 && save->x <= espelhox-5 + 20 && save->y < espelhoy + 13 && vira % 2 == 1)
     {
         int reflexx = save->x;
         int distancia = save->y - espelhoy;
@@ -20,10 +20,10 @@ void espelhaogaroto(SAVE *save, int espelhox, int espelhoy, int pisca, int selec
 
         if (reflexy < espelhoy + 1) reflexy = espelhoy + 1;
         if (reflexy > espelhoy + 4) reflexy = espelhoy + 4;
-        if (reflexx < espelhox) reflexx = espelhox;
-        if (reflexx > espelhox + 9) reflexx = espelhox + 9;
+        if (reflexx < espelhox-5) reflexx = espelhox-5;
+        if (reflexx > espelhox-5 + 9) reflexx = espelhox-5 + 9;
 
-        if (vira % 2 == 1 && save->x >= espelhox && save->x <= espelhox + 7)
+        if (vira % 2 == 1 && save->x >= espelhox-5 && save->x <= espelhox-5 + 7)
         {
             int borda1 = espelhox, borda2 = espelhox + 10;
             if (reflexx >= borda1 && reflexx <= borda2)

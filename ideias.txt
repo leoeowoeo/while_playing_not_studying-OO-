@@ -42,3 +42,8 @@ quando voce deixar ela suspeitando de vc, a gente pode faer interações diferen
 o armário estiver aberto
 voce estiver com o celular na mão
 voce estiver com o livro na mão, estudando, etc
+
+
+
+
+ADICIONAR UM JOGO DA VELHA, JOGAVEL COM ARVORE

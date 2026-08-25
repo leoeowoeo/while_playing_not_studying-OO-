@@ -46,7 +46,6 @@ int main()
     save.selecao_olhos=9;
     save.selecao_pernas=0;
     save.selecao_cor=0;
-
     int tecla = 0;
     int xf = 22 + Xall, yf = 10 + Yall, lado = 0;
     int janelaY = 4 + Yall, janelaX = 50 + Xall;
@@ -57,6 +56,10 @@ int main()
     int livro1 = 0, livro2 = 0, livro3 = 0, estudando = 0;
     int jogarcelular = 0;
     int acertos = 0;
+    int interruptorON = 1;
+    int interagirInt = 0;
+    int interruptorX = 16 + Xall; 
+    int interruptorY = 16 + Yall;
     int interagirCel = 0, interagirEst = 0, interagirArm = 0, interagirJan = 0, interagirCam = 0;
     int tecla_selecao, interage = 0,par = 0;
     int jogarcelular5 = 0, encararespelho = 0, dormircama = 0, jogartodosjogos = 0, ler1jogar3 = 0, ler3dormir = 0, ler3jogatodos = 0;
@@ -90,13 +93,11 @@ int main()
     int revista_linha = 0;
     int iniciar = 0;
     int estanoquarto = 0;
-
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
     erase();
     move(0, 0);
     curs_set(0);
-
     while (1) // menu
     {
         estanoquarto = 0;
@@ -108,13 +109,11 @@ int main()
             cbreak();
         }
         if (epilepsia == 1) mvprintw(LINES-5, 5, "MODO DE EPILEPSIA");
-
         erase();
         refresh();
         inicializar_cores(&save, interage, &par);
         //void inicializar_cores(int cor, int interage, int selecaocor, int *par)
         napms(30);
-
         if ((iniciar == 0 || save.depoisprova == 0) && save.estagio == 0)
         {/*
             keypad(stdscr, FALSE);
@@ -135,10 +134,8 @@ int main()
             save.quest = dialogoMae(&maexinga);
             keypad(stdscr, TRUE);
         }
-
         int pisca = 1, vontadedepisca = 0;
         int chuvax = 53 + Xall, chuvay = 5 + Yall, pos = 0, pos2 = 1, pos3 = 2;
-
         while (1)
         {
             if (save.depoisprova == 1) { save.x = 22 + Xall; save.y = 10 + Yall; }
@@ -154,7 +151,6 @@ int main()
                     if (save.depoisprova == 1 && validador == 1) { save.maepistola = 0; save.maepistoladef = 0; validador = 0; }
                     fechar = 0;
                     clock_t frame_start = clock();
-
                     if (save.depoisprova == 0)
                     {
                         if (save.estagio == 0) strcpy(save.momento, "Dialogo com a mae");
@@ -166,14 +162,12 @@ int main()
                         if (save.estagio == 3) strcpy(save.momento, "Quarto(depois da prova)");
                         else if (save.estagio == 4) strcpy(save.momento, "Dialogo final");
                     }
-
                     vontadedepisca++;
                     nodelay(stdscr, TRUE);
                     if (vontadedepisca <= 500) pisca = 1;
                     else if (vontadedepisca > 500 && vontadedepisca <= 505) pisca = 0;
                     else vontadedepisca = 0;
                     erase();
-
                     // ===== DESENHO DO QUARTO =====
                     int camaY = 8 + Yall, camaX = 80 + Xall;
                     int estanteY = 5 + Yall, estanteX = 34 + Xall;
@@ -189,12 +183,11 @@ int main()
                     desenhar_cama(Xall, Yall,save.cor, interagirCam, par);
                     desenhar_estante(Xall, Yall,save.cor, interagirEst, par, &save, celularX, celularY);
                     desenhar_mesa(Xall, Yall,save.cor);
-                    
                     espelhaogaroto(&save, espelhox, espelhoy, pisca,save.selecao_face,save.selecao_pernas,save.selecao_olhos,passo,vira,virahoriz);
                     desenhar_espelho(Xall, Yall,save.cor, par);
                     desenhar_janela(Xall, Yall,save.cor,save.janelaaberta, interagirJan, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
                     //void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagirJan, int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check)
-                    
+                    desenhar_interruptor(interruptorX, interruptorY, &interruptorON, &interagirInt,par,save.cor);
                     desenhar_armario(Xall, Yall,save.cor, armarioaberto, interagirArm, par);
                     desenhar_porta(Xall, Yall,save.cor,save.depoisprova,save.maepistoladef,maexinga, acertos);
                     //void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos)
@@ -214,15 +207,12 @@ int main()
                     movimentar_jogador(tecla, &xf, &yf, &passo, &lado, &vira, Xall, Yall,&virahoriz);
                     check++;
                     if (check > 100) { check = 0; passo = 0; }
-
                     processar_colisoes(&xf, &yf, &save, camaX, camaY, estanteX, estanteY, armarioX, armarioY, mesaX, mesaY, lixoX, lixoY);
                     save.x = xf; save.y = yf;
                     check++;
                     if (check > 100) { check = 0; passo = 0; }
-
                     // ===== INTERAÇÕES =====
-                    processar_interacoes(&save, tecla, Xall, Yall, espelhox, espelhoy, camaX, camaY, armarioX, armarioY, janelaX, janelaY, celularX, celularY, &espelho, &dormindo, &armarioaberto, &interagirCam, &interagirArm, &interagirJan, &interagirCel, &interagirEst, &marcar, &jogarcelular5,save.cor, &revista_linha, &revista_coluna, &livro1, &livro2, &livro3, &abrindolivro, &estudo, &estudando, &acertos, vira, estanteX, estanteY);
-
+                    processar_interacoes(&save, tecla, Xall, Yall, espelhox, espelhoy, camaX, camaY, armarioX, armarioY, janelaX, janelaY, celularX, celularY, &espelho, &dormindo, &armarioaberto, &interagirCam, &interagirArm, &interagirJan, &interagirCel, &interagirEst, &marcar, &jogarcelular5,save.cor, &revista_linha, &revista_coluna, &livro1, &livro2, &livro3, &abrindolivro, &estudo, &estudando, &acertos, vira, estanteX, estanteY,interruptorX, interruptorY, &interruptorON, &interagirInt);
                     desenhanafrente( Xall,  Yall,  save.cor,  armarioaberto,  interagirArm,  par, lixoY,  lixoX);
                     // ===== ESPELHO MINIGAME =====
                     if (espelho == 1)
@@ -236,8 +226,6 @@ int main()
                     }
                     // ===== LIVRO ABERTO =====
                     printar_livro(save.livropickup, &abrindolivro, livro1, livro2, livro3, livroY, livroX);
-                    
-
                     // ===== CELULAR MENU =====
                     if (save.celularpickup == 1)
                     {
@@ -258,7 +246,6 @@ int main()
                                 break;
                         }
                     }
-
                     // ===== REVISTA MENU =====
                     if (save.revistapickup == 1)
                     {
@@ -277,18 +264,30 @@ int main()
                             case '\n': if (marcar == 0 || marcar) demo(); break;
                         }
                     }
-
                     // ===== ESTUDAR LIVRO =====
                     if (livro1 || livro2 || livro3) estudar(save,livro1,livro2,livro3,&estudando,&estudo,&tecla, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
-                   
-
                     // ===== FRAME RATE =====
+                    // INICIO DA IMPLEMENTAÇÃO
+                    // QUANDO A LUZ ESTIVER DESLIGADA, SOBRESCREVE OS ATRIBUTOS DE TODA A TELA
+                    // COM COLOR_PAIR(60) (COR_ESCURO) E A_DIM, DEPOIS DE TODO O DESENHO
+                    // MVCHGAT MUDA OS ATRIBUTOS DE CARACTERES JA ESCRITOS NA TELA,
+                    // DIFERENTE DO ATTRON QUE SO AFETA PRINTS FUTUROS
+                    // ISSO FUNCIONA COMO UM "FILTRO ESCURO" POR CIMA DE TUDO
+                    // NAO IMPORTA QUAIS COLOR_PAIR CADA FUNCAO DE DESENHO USOU,
+                    // O MVCHGAT SOBRESCREVE TODOS DE UMA VEZ SO
+                    if (!interruptorON && save.cor)
+                    {
+                        for (int y = 0; y < LINES; y++)
+                        {
+                            mvchgat(y, 0, -1, A_DIM, 60, NULL);
+                        }
+                    }
+                    // FINAL DA IMPLEMENTAÇÃO
                     refresh();
                     clock_t frame_end = clock();
                     double elapsed_ms = (double)(frame_end - frame_start) * 1000.0 / CLOCKS_PER_SEC;
                     int sleep_ms = (int)(TARGET_FRAME_MS - elapsed_ms);
                     if (sleep_ms > 0) napms(sleep_ms);
-
                     nodelay(stdscr, TRUE);
                     if (save.atividade_sono > 5) { iniciar = 0; voltar_inicio = 0; break; }
                     if (dormindo == 1) { iniciar = 0; dormindo = 0; voltar_inicio = 0; break; }
@@ -321,39 +320,3 @@ int main()
     endwin();
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

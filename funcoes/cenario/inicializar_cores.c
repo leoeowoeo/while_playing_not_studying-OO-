@@ -35,7 +35,9 @@ não tem parametro, retorna valor booleano true ou false, verifica se o terminal
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19
 #define COR_CINZACLARO     20
-#define COR_CINZAMTESCUROMEIOMARROM  21
+#define COR_CINZAMTESCUROMEIOMARROM 51
+#define COR_ESCURO 60
+#define COR_BEMESCURO 60
 
 void inicializar_cores(SAVE *save, int interage, int *par)
 {
@@ -57,7 +59,13 @@ void inicializar_cores(SAVE *save, int interage, int *par)
         init_color(COR_CINZACLARO, 850, 850, 850);
         init_color(COR_CINZAESCURO, 700, 700, 700);
         init_color(COR_CINZAMTESCUROMEIOMARROM, 600, 500, 300);
-        
+        init_color(COR_BEMESCURO, 100, 25, 200);
+// INICIO DA IMPLEMENTAÇÃO
+// INICIALIZA A COR_ESCURO COM VALORES MUITO BAIXOS (QUASE PRETO)
+// ISSO DEFINE A COR 52 USADA NO INIT_PAIR(60) COMO COR DE FUNDO
+        init_color(COR_ESCURO, 0, 0, 0);
+// FINAL DA IMPLEMENTAÇÃO
+
         init_pair(1, COR_RODAPE, -1);
         init_pair(2, COR_JANELA, -1);
         init_pair(4, COLOR_RED, -1);
@@ -99,6 +107,7 @@ void inicializar_cores(SAVE *save, int interage, int *par)
         init_pair(57, COLOR_BLACK,   COR_CINZACLARO);  // 7
         init_pair(58, COLOR_RED,     COR_CINZACLARO);  // 8
 
+        init_pair(60, COR_BEMESCURO, COR_ESCURO);
         if (interage == 1)
         {
             init_pair(12, COLOR_YELLOW, -1);

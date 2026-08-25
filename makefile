@@ -46,6 +46,7 @@ SRC = funcoes/demo.c \
       funcoes/cenario/desenhar_rodape.c \
       funcoes/cenario/desenhar_gato.c \
       funcoes/cenario/desenhar_celular.c \
+      funcoes/cenario/desenhar_interruptor.c \
       funcoes/cenario/inicializar_cores.c \
       funcoes/cenario/mecanicas/processar_colisoes.c \
       funcoes/cenario/mecanicas/processar_interacoes.c \

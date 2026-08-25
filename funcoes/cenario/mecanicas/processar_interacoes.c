@@ -1,5 +1,11 @@
 #include "oo.h"
-void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelhox, int espelhoy, int camaX, int camaY, int armarioX, int armarioY, int janelaX, int janelaY, int celularX, int celularY, int *espelho, int *dormindo, int *armarioaberto, int *interagirCam, int *interagirArm, int *interagirJan, int *interagirCel, int *interagirEst, int *marcar, int *jogarcelular5, int cor, int *revista_linha, int *revista_coluna, int *livro1, int *livro2, int *livro3, int *abrindolivro, int *estudo, int *estudando, int *acertos, int vira,int estanteX, int estanteY)
+
+void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelhox, int espelhoy, int camaX, int camaY,
+     int armarioX, int armarioY, int janelaX, int janelaY, int celularX, int celularY, int *espelho, int *dormindo, 
+     int *armarioaberto, int *interagirCam, int *interagirArm, int *interagirJan, int *interagirCel, int *interagirEst,
+     int *marcar, int *jogarcelular5, int cor, int *revista_linha, int *revista_coluna, int *livro1, int *livro2, 
+     int *livro3, int *abrindolivro, int *estudo, int *estudando, int *acertos, int vira,int estanteX, int estanteY, 
+     int interruptorX, int interruptorY, int *interruptorON, int *interagirInt)
 {
     // ESPELHO
     if (save->y > espelhoy && save->y < espelhoy + 8 && save->x > espelhox - 2 && save->x < espelhox + 9 && vira % 2 == 1)
@@ -125,4 +131,31 @@ void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelho
         }
     }
     else *interagirEst = 0;
+
+// INICIO DA IMPLEMENTAÇÃO
+    // INTERRUPTOR
+    int pertoInterruptor = (save->x >= interruptorX - 2 && save->x <= interruptorX + 4) && (save->y >= interruptorY - 1 && save->y <= interruptorY + 3);
+    if (pertoInterruptor)
+    {
+        *interagirInt = 1;
+        if (*interruptorON) 
+        { 
+            wattron(stdscr, A_BOLD); 
+            mvprintw(Yall+33, Xall+27, "Desligar luz: E"); 
+            wattroff(stdscr, A_BOLD); 
+        }
+        else 
+        { 
+            wattron(stdscr, A_BOLD); 
+            mvprintw(Yall+33, Xall+27, "Ligar luz: E"); 
+            wattroff(stdscr, A_BOLD); 
+        }
+        
+        if (tecla == 'e' || tecla == 'E') 
+        {
+            *interruptorON = !(*interruptorON);
+        }
+    }
+    else *interagirInt = 0;
+// FINAL DA IMPLEMENTRAÇÃO
 }

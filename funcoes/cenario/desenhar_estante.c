@@ -4,13 +4,15 @@ void desenhar_estante(int Xall, int Yall, int cor, int interagirEst, int par, SA
     int estanteY = 5 + Yall, estanteX = 34 + Xall;
     if (interagirEst == 1 && cor == 1)
     wattron(stdscr, COLOR_PAIR(par));
-      mvprintw(estanteY-1, estanteX+1,"_____________.");
-    mvprintw(estanteY, estanteX,     "/____________/|");
-    mvprintw(estanteY+1, estanteX,   "|_[]_!!__||[]||");
-    mvprintw(estanteY+2, estanteX,   "|!!_[]_!!_!!_||");
-    mvprintw(estanteY+3, estanteX,   "|!!_!!__||[]_||");
-    mvprintw(estanteY+4, estanteX,   "|__!!_!!___!!||");
-    mvprintw(estanteY+5, estanteX,   "|_||!![]_!![]||");
+    if (cor == 1)  wattron(stdscr, COLOR_PAIR(7));
+    mvprintw(estanteY+2, estanteX+2,   "_____________.");
+    mvprintw(estanteY-1, estanteX+1,  "/            /|");
+    mvprintw(estanteY, estanteX,     "/____________/ |");
+    mvprintw(estanteY+1, estanteX,   "|_[]_!!__||[]| |");
+    mvprintw(estanteY+2, estanteX,   "|!!_[]_!!_!!_| |");
+    mvprintw(estanteY+3, estanteX,   "|!!_!!__||[]_| |");
+    mvprintw(estanteY+4, estanteX,   "|__!!_!!___!!| |");
+    mvprintw(estanteY+5, estanteX,   "|_||!![]_!![]| /");
     mvprintw(estanteY+6, estanteX,   "|_!!_!!_[]_|||/");
     wattroff(stdscr, COLOR_PAIR(7));
     wattroff(stdscr, COLOR_PAIR(par));

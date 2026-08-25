@@ -2,11 +2,15 @@ mn, bota as ideias aqui
 
 fazer a luta do pitagoras ( undertale ou pokemon)
 
-quero fazer uns bagulho, mas vai ter q ter as interações de hitbox prontas antes:
-Pra abrir o armário, vai ter q pegar uma caixa que estará em cima da estante,pra pegar essa caixa, vc tera q ir entre a mesinha e a cama, empurrar a mesinha pro armário
-ai vai aparecer a opção de subir nela,
 
-voce subindo, vai aparecer a opção de descer e a opção de descer e a opção de pegar a caixa
+
+quero fazer uns bagulho, mas vai ter q ter as interações de hitbox prontas antes:
+
+
+Pra abrir o armário, vai ter q pegar uma caixa que estará em cima da estante,pra pegar essa caixa, vc tera q ir entre a mesinha
+ e a cama, empurrar a mesinha pro armário ai vai aparecer a opção de subir nela,
+
+voce subindo, vai aparecer a opção de descer e a opção de pegar a caixa
 
 quando voce clicar em pegar a caixa, a gente faz ele derrubando a caixa no chão e uns negócio falando de som (boom)
 
@@ -25,8 +29,16 @@ pra ela não desconfiar de voce
 
 se vc errar muito ela te descobre e vc perde
 
-se vc errar bastante mas antes de um limite, ela fica desconfiada, e dps de um tempo vai começar outro timer pq é ela testando pra ver se é vdd msm
+se vc errar bastante mas antes de um limite, ela fica desconfiada, e dps de um tempo vai começar outro timer pq é ela testando
+pra ver se é vdd msm
 
 se vc errar mt pouco ela só sai e acabou
 
-ai vc pode pegar a chave na caixa e abrir o armário pra jogar o sudoku, palavra cruzada, etc ( a gente pode dar um premio pra quem conseguir, ou fazer algo interessante)
+ai vc pode pegar a chave na caixa e abrir o armário pra jogar o sudoku, palavra cruzada, etc ( a gente pode dar um premio 
+pra quem conseguir, ou fazer algo interessante)
+
+
+quando voce deixar ela suspeitando de vc, a gente pode faer interações diferentes pra se:
+o armário estiver aberto
+voce estiver com o celular na mão
+voce estiver com o livro na mão, estudando, etc

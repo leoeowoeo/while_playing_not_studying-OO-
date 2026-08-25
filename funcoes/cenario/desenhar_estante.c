@@ -5,7 +5,7 @@ void desenhar_estante(int Xall, int Yall, int cor, int interagirEst, int par, SA
     if (interagirEst == 1 && cor == 1)
     wattron(stdscr, COLOR_PAIR(par));
     if (cor == 1)  wattron(stdscr, COLOR_PAIR(7));
-    mvprintw(estanteY+2, estanteX+2,   "_____________.");
+    mvprintw(estanteY-2, estanteX+2,   "_____________.");
     mvprintw(estanteY-1, estanteX+1,  "/            /|");
     mvprintw(estanteY, estanteX,     "/____________/ |");
     mvprintw(estanteY+1, estanteX,   "|_[]_!!__||[]| |");

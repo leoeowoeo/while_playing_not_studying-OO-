@@ -267,14 +267,7 @@ int main()
                     // ===== ESTUDAR LIVRO =====
                     if (livro1 || livro2 || livro3) estudar(save,livro1,livro2,livro3,&estudando,&estudo,&tecla, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
                     // ===== FRAME RATE =====
-                    // INICIO DA IMPLEMENTAÇÃO
-                    // QUANDO A LUZ ESTIVER DESLIGADA, SOBRESCREVE OS ATRIBUTOS DE TODA A TELA
-                    // COM COLOR_PAIR(60) (COR_ESCURO) E A_DIM, DEPOIS DE TODO O DESENHO
-                    // MVCHGAT MUDA OS ATRIBUTOS DE CARACTERES JA ESCRITOS NA TELA,
-                    // DIFERENTE DO ATTRON QUE SO AFETA PRINTS FUTUROS
-                    // ISSO FUNCIONA COMO UM "FILTRO ESCURO" POR CIMA DE TUDO
-                    // NAO IMPORTA QUAIS COLOR_PAIR CADA FUNCAO DE DESENHO USOU,
-                    // O MVCHGAT SOBRESCREVE TODOS DE UMA VEZ SO
+
                     if (!interruptorON && save.cor)
                     {
                         for (int y = 0; y < LINES; y++)
@@ -282,7 +275,7 @@ int main()
                             mvchgat(y, 0, -1, A_DIM, 60, NULL);
                         }
                     }
-                    // FINAL DA IMPLEMENTAÇÃO
+
                     refresh();
                     clock_t frame_end = clock();
                     double elapsed_ms = (double)(frame_end - frame_start) * 1000.0 / CLOCKS_PER_SEC;

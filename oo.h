@@ -38,7 +38,7 @@ typedef struct SAVE_
 
 int inicio(int *interage,int *iniciar,int *epilepsia,SAVE *save,int *jogar,int estanoquarto);
 //int inicio(int *interage,int *iniciar,int *epilepsia,SAVE save,int *jogar,int estanoquarto)
-void pedrapapeltesoura(int *cor,int *encararespelho);
+void pedrapapeltesoura(int *encararespelho);
 int cobra(int *cor, int *jogarcelular5);
 void dormir();
 void cair_no_sono();
@@ -60,7 +60,7 @@ int slow_mvwprintw(WINDOW *win,const char *str, int y, int x,  int delay_ms,int 
 void transicao(int *epilepsia);
 void dialogodepoisprova(int *acertos,int *maexinga,int *epilepsia);
 void demo();
-void iniciar(int slot,SAVE *save_atual,int *selecao_olhos, int *selecao_face,int *selecao_pernas);
+void iniciar(int slot,SAVE *save_atual);
 int gravar(int slot,SAVE *save_atual);
 int recarregar(int slot,SAVE *save_atual);
 void menusave(SAVE *save_atual,int *jogar,int estanoquarto);
@@ -82,9 +82,9 @@ void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistola
 void desenhar_lixo(int Xall, int Yall, int cor);
 void desenhar_tapete(int Xall, int Yall, int cor);
 void desenhar_rodape(int Xall, int Yall, int cor);
-void desenhar_gato(int Xall, int Yall, int armarioX, int armarioY, int vontadedepisca, int depoisprova);
-void desenhar_celular_mesa(int Xall, int Yall,SAVE *save, int celularX, int celularY, int interagirCel, int par);
-void desenhar_chuva(int Xall, int Yall, int cor, int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check);
+void desenhar_gato(int armarioX, int armarioY, int vontadedepisca, int depoisprova);
+void desenhar_celular_mesa(SAVE *save, int celularX, int celularY, int interagirCel, int par);
+void desenhar_chuva(int cor, int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check);
 void desenhar_jogador(SAVE *save, int vira, int passo, int pisca,
                         int cor, int selecao_face, int selecao_olhos, int selecao_pernas, int virahoriz);
 void desenhar_hud(int ybarra, int xbarra, int cor, SAVE *save, int jogarcelular5, int encararespelho,
@@ -99,7 +99,7 @@ void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelho
                         int cor, int *revista_linha, int *revista_coluna,	int *livro1,	int *livro2,	
                         int *livro3,	int *abrindolivro,	int *estudo,	int *estudando,	int *acertos,	
                         int vira,	int estanteX,	int estanteY,
-                        int interruptorX, int interruptorY, int *interruptorON, int *interagirInt);
+                        int interruptorX, int interruptorY, int *interruptorON, int *interagirInt,int *interagirCaixa);
 void espelhaogaroto(SAVE *save, int espelhox, int espelhoy, int pisca,int selecao_face,int selecao_pernas,
                         int selecao_olhos,int passo,int vira,int virahoriz);
 void desenhar_interruptor(int interruptorX, int interruptorY, int *interruptorON, int *interagirInt, int par, int cor);
@@ -107,7 +107,8 @@ void printar_celular(SAVE save,int celularX,int celularY);
 void printapracelular(int Xall,int Yall,int posy, int posx);
 void printar_livro(int livropickup, int *abrindolivro, int livro1, int livro2, int livro3, int livroY, int livroX );
 void desenhanafrente(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par,int lixoY, int lixoX);
-void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *estudo,int *tecla,int par,int chuvax, int chuvay,
+void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *estudo,int *tecla,int chuvax, int chuvay,
                        int *pos, int *pos2, int *pos3, int check);
+void desenhar_caixa(int Xall, int Yall, int cor, int interagirCaixa, int par, SAVE *save);
 int campominado();
 #endif

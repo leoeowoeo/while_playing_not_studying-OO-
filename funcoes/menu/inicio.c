@@ -23,15 +23,12 @@ int inicio(int *interage,int *iniciar,int *epilepsia,SAVE *save,int *jogar,int e
     wattron(stdscr,COLOR_PAIR(4));
     int xselecao=COLS-120,yselecao=10;
     XeYselecaoLUGAR(&yselecao,&xselecao);
-    int tecla, selecao=1,selecao_opcoes=1,selecao_aparencia=0;
+    int tecla = 0, selecao=1,selecao_opcoes=1;
     int piscar=0;
-    int indicacao=0;
     int sair=0;
     int x=2;
     char *olhos[10]={"##","@@", "**","$$","vv","><","XX","OO","00","oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >","d  b"};
-    char *pernas[4] = {"/|","|\\","<v", "v>"};
-    int i; 
     int validador=0;
     int e=0;
     *iniciar=0;
@@ -317,7 +314,6 @@ while(sair!=1)// tem q verificar esses ifs, ta dando erro nas chaves, tem algo n
                             wattron(stdscr,COLOR_PAIR(4)|A_BOLD);
                             mvprintw(yselecao+20-10+2,xselecao,"HABILITAR INDICADORES DE INTERACAO");
                             wattroff(stdscr,COLOR_PAIR(4)|A_BOLD);
-                            indicacao=1;
                         }
                         else if(selecao_opcoes==3)
                         {

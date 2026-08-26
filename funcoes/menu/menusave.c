@@ -9,11 +9,10 @@ void menusave(SAVE *save, int *jogar,int estanoquarto)
     keypad(stdscr,TRUE);
     init_pair(4,COLOR_WHITE,-1);
     int xselecao=60,yselecao=10;
-    int tecla, selecao=0,i,j;
+    int tecla, selecao=0, i;
     int sair=1;
     int selecao_salvar=1;
     int INICIAR=0;
-    int savey=15,savex=60;
     int salvo=0;
     int carregoOUsalvo=0;
     if(estanoquarto==0) selecao_salvar=2;
@@ -22,7 +21,7 @@ void menusave(SAVE *save, int *jogar,int estanoquarto)
     {
         if (!recarregar(i + 1, &slots[i]))
         {
-            iniciar(i + 1, &slots[i], &save->selecao_olhos, &save->selecao_face, &save->selecao_pernas); // aqui eu inicio todos os saves com o momento e a imagem
+            iniciar(i + 1, &slots[i]); // aqui eu inicio todos os saves com o momento e a imagem
         }
     }
     save->iniciado = 1;

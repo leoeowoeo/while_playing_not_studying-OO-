@@ -1,5 +1,5 @@
 #include "oo.h"
-void desenhar_celular_mesa(int Xall, int Yall,SAVE *save, int celularX, int celularY, int interagirCel, int par)
+void desenhar_celular_mesa(SAVE *save, int celularX, int celularY, int interagirCel, int par)
 {
     if (save->celularpickup == 0)
     {

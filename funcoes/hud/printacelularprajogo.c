@@ -1,6 +1,8 @@
 #include "oo.h"
 void printapracelular(int Xall,int Yall,int posy, int posx)
 {
+(void)Xall;
+(void)Yall;
 mvprintw(posy,      posx+18, "  __________________________________________________________________________________________ ");
 mvprintw(posy+1,    posx+18, " | ________________________________________________________________________________________ |");        
 mvprintw(posy+2,    posx+18, " ||                                             O                                          ||");

@@ -36,8 +36,8 @@ int cobra(int *cor,int *jogarcelular)
     nodelay(cobra,TRUE);
 
     int Xallcobra=80,Yallcobra=5;
-    int i, tecla, tecla2 = 0;
-    int trofeux=Xallcobra,trofeuy=Yallcobra+22;
+    int i, tecla=0, tecla2 = 0;
+    int trofeuy=Yallcobra+22;
     
 //cobra
 
@@ -47,9 +47,8 @@ int cobra(int *cor,int *jogarcelular)
 //--------------
 //mecanica
     int derrota=0, quit=0;
-    int cont=0, velocidad=5;
+    int cont=0;
 
-    int altura=30, largura=30;
 
     
     int maçãx = Xallcobra + 2 + ((rand() % 28) * 2);

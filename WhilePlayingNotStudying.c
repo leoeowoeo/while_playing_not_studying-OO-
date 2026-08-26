@@ -20,7 +20,6 @@
 // ==================== MAIN ====================
 int main()
 {
-    FILE *entrada, *saida;
     curs_set(0);
     initscr();
     cbreak();
@@ -50,18 +49,17 @@ int main()
     int xf = 22 + Xall, yf = 10 + Yall, lado = 0;
     int janelaY = 4 + Yall, janelaX = 50 + Xall;
     int celularY = 9 + Yall, celularX = 76 + Xall;
-    int armarioY = 14 + Yall, armarioX = 19 + Xall, armarioaberto = 0, pertocama = 0, dormindo = 0;
-    int revistax = celularX, revistay = celularY, meow = 0;
+    int armarioY = 14 + Yall, armarioX = 19 + Xall, armarioaberto = 0, dormindo = 0;
+    int revistax = celularX, revistay = celularY;
     int livroX = celularX + 17, livroY = celularY, abrindolivro = 0;
     int livro1 = 0, livro2 = 0, livro3 = 0, estudando = 0;
-    int jogarcelular = 0;
     int acertos = 0;
     int interruptorON = 1;
     int interagirInt = 0;
     int interruptorX = 16 + Xall; 
     int interruptorY = 16 + Yall;
-    int interagirCel = 0, interagirEst = 0, interagirArm = 0, interagirJan = 0, interagirCam = 0;
-    int tecla_selecao, interage = 0,par = 0;
+    int interagirCel = 0, interagirEst = 0, interagirArm = 0, interagirJan = 0, interagirCam = 0,interagirCaixa = 0;
+    int interage = 0,par = 0;
     int jogarcelular5 = 0, encararespelho = 0, dormircama = 0, jogartodosjogos = 0, ler1jogar3 = 0, ler3dormir = 0, ler3jogatodos = 0;
     char *quests[8] = {
         "Ganhar 5 jogos no celular",
@@ -80,15 +78,12 @@ int main()
     int espelho = 0;
     int marcar = 0;
     int xbarra = 3, ybarra = 3;
-    int j, i;
     int maexinga = 0;
     int epilepsia = 0;
     int estudo = 0;
     int validador = 1;
-    int fechar = 0;
     int voltar_inicio = 0;
     int jogar = 0;
-    int debug = 1;
     int revista_coluna = 0;
     int revista_linha = 0;
     int iniciar = 0;
@@ -149,7 +144,6 @@ int main()
                     gravar_imagem_do_momento(save.x, save.y, save.imagem);
                     if (tecla == 'm') menusave(&save, &jogar,estanoquarto);
                     if (save.depoisprova == 1 && validador == 1) { save.maepistola = 0; save.maepistoladef = 0; validador = 0; }
-                    fechar = 0;
                     clock_t frame_start = clock();
                     if (save.depoisprova == 0)
                     {
@@ -173,15 +167,13 @@ int main()
                     int estanteY = 5 + Yall, estanteX = 34 + Xall;
                     int mesaY = 8 + Yall, mesaX = 74 + Xall;
                     int lixoY = 27 + Yall, lixoX = 84 + Xall;
-                    int tapetey = 18 + Yall, tapetex = 45 + Xall;
                     int rodapey = 9 + Yall, rodapex = 21 + Xall;
                     int espelhoy = 3 + Yall, espelhox = 63 + Xall;
-                    int portaY = 3 + Yall, portaX = 11 + Xall;
-                    int gatoy = armarioY + 13, gatox = armarioX + 10;
                     //==========================DESENHA O QUARTO===========================
                     desenhar_rodape(Xall, Yall,save.cor);
                     desenhar_cama(Xall, Yall,save.cor, interagirCam, par);
                     desenhar_estante(Xall, Yall,save.cor, interagirEst, par, &save, celularX, celularY);
+                    desenhar_caixa(Xall, Yall, save.cor, interagirCaixa, par, &save);
                     desenhar_mesa(Xall, Yall,save.cor);
                     espelhaogaroto(&save, espelhox, espelhoy, pisca,save.selecao_face,save.selecao_pernas,save.selecao_olhos,passo,vira,virahoriz);
                     desenhar_espelho(Xall, Yall,save.cor, par);
@@ -193,8 +185,8 @@ int main()
                     //void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos)
                     desenhar_lixo(Xall, Yall,save.cor);
                     desenhar_tapete(Xall, Yall,save.cor);
-                    desenhar_gato(Xall, Yall, armarioX, armarioY, vontadedepisca, save.depoisprova);
-                    desenhar_celular_mesa(Xall, Yall,&save, celularX, celularY, interagirCel, par);
+                    desenhar_gato(armarioX, armarioY, vontadedepisca, save.depoisprova);
+                    desenhar_celular_mesa(&save, celularX, celularY, interagirCel, par);
                     desenhar_jogador(&save, vira, passo, pisca,save.cor, save.selecao_face, save.selecao_olhos, save.selecao_pernas,virahoriz);
                     desenhar_hud(ybarra, xbarra,save.cor, &save, jogarcelular5, encararespelho, dormircama, jogartodosjogos, ler1jogar3, ler3jogatodos, ler3dormir, quests);
                     if(save.celularpickup==1) printar_celular(save,celularX,celularY);
@@ -212,13 +204,17 @@ int main()
                     check++;
                     if (check > 100) { check = 0; passo = 0; }
                     // ===== INTERAÇÕES =====
-                    processar_interacoes(&save, tecla, Xall, Yall, espelhox, espelhoy, camaX, camaY, armarioX, armarioY, janelaX, janelaY, celularX, celularY, &espelho, &dormindo, &armarioaberto, &interagirCam, &interagirArm, &interagirJan, &interagirCel, &interagirEst, &marcar, &jogarcelular5,save.cor, &revista_linha, &revista_coluna, &livro1, &livro2, &livro3, &abrindolivro, &estudo, &estudando, &acertos, vira, estanteX, estanteY,interruptorX, interruptorY, &interruptorON, &interagirInt);
+                    processar_interacoes(&save, tecla, Xall, Yall, espelhox, espelhoy, camaX, camaY, armarioX, armarioY,
+                    janelaX, janelaY, celularX, celularY, &espelho, &dormindo, &armarioaberto, &interagirCam,
+                    &interagirArm, &interagirJan, &interagirCel, &interagirEst, &marcar, &jogarcelular5,save.cor,
+                    &revista_linha, &revista_coluna, &livro1, &livro2, &livro3, &abrindolivro, &estudo, &estudando,
+                    &acertos, vira, estanteX, estanteY,interruptorX, interruptorY, &interruptorON, &interagirInt,&interagirCaixa);
                     desenhanafrente( Xall,  Yall,  save.cor,  armarioaberto,  interagirArm,  par, lixoY,  lixoX);
                     // ===== ESPELHO MINIGAME =====
                     if (espelho == 1)
                     {
                         nodelay(stdscr, FALSE);
-                        pedrapapeltesoura(&save.cor, &encararespelho);
+                        pedrapapeltesoura(&encararespelho);
                         espelho = 0;
                         nodelay(stdscr, TRUE);
                         erase();
@@ -257,7 +253,7 @@ int main()
                             case KEY_RIGHT: marcar--; revista_coluna += 2;
                                 if (revista_coluna > 4 && revista_linha == 0) revista_coluna = 0;
                                 else if (revista_linha == 1) { if (revista_coluna > 6) marcar = 0; if (revista_coluna > 12) revista_coluna = 0; }
-                                if (marcar == -1) marcar = 5; break;
+                                if (marcar == -1) {marcar = 5;} break;
                             case KEY_LEFT: marcar++; if (marcar > 5) marcar = 0; break;
                             case KEY_DOWN: revista_linha++; if (revista_linha > 2) revista_linha = 0; break;
                             case KEY_UP: if (revista_coluna >= 6) revista_linha--; break;
@@ -265,7 +261,7 @@ int main()
                         }
                     }
                     // ===== ESTUDAR LIVRO =====
-                    if (livro1 || livro2 || livro3) estudar(save,livro1,livro2,livro3,&estudando,&estudo,&tecla, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
+                    if (livro1 || livro2 || livro3) estudar(save,livro1,livro2,livro3,&estudando,&estudo,&tecla,chuvax, chuvay, &pos, &pos2, &pos3,check);
                     // ===== FRAME RATE =====
 
                     if (!interruptorON && save.cor)

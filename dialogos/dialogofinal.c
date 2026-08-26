@@ -5,7 +5,7 @@ int dialogofinal(int *finais_alcancados,int *acertos)
     int skipado = 0;
     int Xall = (COLS / 2) - 57;
     int Yall = 3;
-    int linha_atual;
+    int linha_atual=Yall;
     erase();
 
     if(*acertos==5)
@@ -236,4 +236,5 @@ int dialogofinal(int *finais_alcancados,int *acertos)
             return 0;
         }
     }
+    return 0;
 }

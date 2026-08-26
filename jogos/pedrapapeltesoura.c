@@ -4,7 +4,7 @@
 #include "oo.h"
 
 // A implementação função fica aqui
-void pedrapapeltesoura(int *cor,int *encararespelho)
+void pedrapapeltesoura(int *encararespelho)
 // a função implementa um pedra papel tesoura ( em dialogos )
 {
     curs_set(0);
@@ -83,7 +83,6 @@ void pedrapapeltesoura(int *cor,int *encararespelho)
         wrefresh(espelho);
         char *escolher[3] = {"Pedra", "Papel", "Tesoura"};
         int escolha=0;
-        int reflexo;
         int marcar=0;
 
     while ((ganhou!=1)&&tecla!='p')

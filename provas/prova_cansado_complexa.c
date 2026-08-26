@@ -20,10 +20,9 @@ int prova_cansado_complexa(SAVE *save,int *acertos)
     init_pair(26,COLOR_BLACK,COLOR_WHITE);
     
     int Xall = 40, Yall = 0;
-    int tecla = 0, i, j;
+    int tecla = 0, i;
     int marcar = 0;
     int marcar_confirmacao = 0; 
-    int certeza=0;
     int confirmando = 0; 
     int resposta_dada = 0;
     int cansando=2;
@@ -69,10 +68,6 @@ int prova_cansado_complexa(SAVE *save,int *acertos)
         " *[E] 5 cores                                                                     "
     };
     
-    char *confirmacao[2] = {
-        " [S] Sim, entregar a prova                                                       ", 
-        " [N] Nao, quero rever                                                            "
-    };
     
     mvwprintw(prova_cansado_complexa, Yall-1, Xall,"Droga");
     wrefresh(prova_cansado_complexa);
@@ -326,14 +321,8 @@ flushinp();
         
         wrefresh(prova_cansado_complexa); 
         napms(30);
-
-        
-        int confirmacaoDEF = 2;
         if (confirmando == 1)
         {
-            confirmacaoDEF = 2;
-            int Ycentro = Yall + 35; 
-            int Xcentro = Xall + 5;
             /*mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro,     Xcentro, "/====================================================\\",cansando);
             mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro + 1, Xcentro, "|      Tem certeza? Vai entregar a prova?            | ",cansando);
             mvwprintw_cansado_complexa(prova_cansado_complexa, Ycentro + 2, Xcentro, "|                                                    | ",cansando);
@@ -399,6 +388,7 @@ flushinp();
 
     delwin(prova_cansado_complexa);
     endwin();
+    return 0;
 }
 
 /*gabarito 

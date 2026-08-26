@@ -7,8 +7,8 @@ void abrirlivro(int *livro1,int *livro2,int *livro3)// a função roda os sprite
         keypad(stdscr, TRUE);
         int Xall=(COLS/2)-40, Yall=3;
         int livroY = Yall+8, livroX = Xall+35;
-        int ganhou=0;
-if(*livro1==1&&*livro2==0&&*livro3==0){
+
+        if(*livro1==1&&*livro2==0&&*livro3==0){
             mvwprintw(stdscr, livroY++,     livroX-20,"     ______ ");
             mvwprintw(stdscr, livroY++,     livroX-20,"    /     /|");
             mvwprintw(stdscr, livroY++,     livroX-20,"   /     / |");

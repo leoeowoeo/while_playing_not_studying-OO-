@@ -18,10 +18,9 @@ int prova_simples(SAVE *save, int *acertos){
     
     // Posições base globais
     int Xall = 40, Yall = 3;
-    int tecla = 0, i, j;
+    int tecla = 0, i;
     int marcar = 0;
     int marcar_confirmacao = 0; 
-    int certeza=0;
     int confirmando = 0; 
     int resposta_dada = 0;
     int resposta[5],respostacerta[5]={1,0,2,1,2};
@@ -32,7 +31,6 @@ int prova_simples(SAVE *save, int *acertos){
     char *questao4[5] = {"*[A] 10 elementos",  "*[B] 25 elementos", "*[C] 5 elementos", "*[D] 20 elementos", "*[E] Alguns elementos ai"};
     char *questao5[5] = {"*[A] Desespero = 0", "*[B] Desespero = 50", "*[C] Desespero = 100", "*[D] O desespero nao pode ser medido em numeros decimais", "*[E] Nao mensuravel"};
     
-    char *confirmacao[2] = {"[S] Sim, entregar a prova", "[N] Nao, quero rever"};
     werase(prova_simples);
         mvwprintw(prova_simples, Yall-1, Xall,"hmmmm");
     wrefresh(prova_simples);
@@ -268,8 +266,6 @@ int prova_simples(SAVE *save, int *acertos){
         // --- TELA DE CONFIRMAÇÃO ---
         if (confirmando == 1)
         {
-            int Ycentro = Yall + 35;
-            int Xcentro = Xall + 5;
 
             /*mvwprintw(prova_simples, Ycentro,     Xcentro, "/====================================================\\");
             mvwprintw(prova_simples, Ycentro + 1, Xcentro, "|      TEM CERTEZA DAS SUAS DECOSOES?                |");
@@ -333,6 +329,7 @@ int prova_simples(SAVE *save, int *acertos){
 
     delwin(prova_simples);
     endwin();
+    return 0;
 }
 /*
 Gabarito

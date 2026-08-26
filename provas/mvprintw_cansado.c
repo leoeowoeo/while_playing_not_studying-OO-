@@ -22,4 +22,5 @@ int mvwprintw_cansado(WINDOW *janela, int Yprova, int Xprova, const char *prova,
             
             mvwaddch(janela,Yprova, Xprova+i,prova[i]);
     }
+    return 0;
 }

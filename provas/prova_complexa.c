@@ -18,15 +18,14 @@ int prova_complexa(SAVE *save,int *acertos)
     
     // Posições base globais
     int Xall = 40, Yall = 3;
-    int tecla = 0, i, j;
+    int tecla = 0, i;
     int marcar = 0;
     int marcar_confirmacao = 0; 
-    int certeza=0;
     int confirmando = 0; 
     int resposta_dada = 0;
     
     int resposta[5],respostacerta[5]={1,1,4,2,0};
-    char *confirmacao[2]={ "sim, entregar","nao, revisar"};
+
     //RODA PRA TESTAR
     // Vetores com o espaçamento exato embutido (81 caracteres entre as barras)
 // --- DECLARAÇÃO DAS OPÇÕES (Com 81 espaços exatos para referência no seu código) ---
@@ -311,12 +310,9 @@ flushinp();
         napms(30);
 
         // --- TELA DE CONFIRMAÇÃO ---
-        int estado_confirmacao = 2; // Variável inteira dedicada criada para sanar o erro do Lvalue
         if (confirmando == 1)
         {
-            estado_confirmacao = 2;
-            int Ycentro = Yall + 35; 
-            int Xcentro = Xall + 5;
+
             /*mvwprintw(prova_complexa, Ycentro,     Xcentro, "/====================================================\\");
             mvwprintw(prova_complexa, Ycentro + 1, Xcentro, "|      Tem certeza? Vai entregar a prova?            | ");
             mvwprintw(prova_complexa, Ycentro + 2, Xcentro, "|                                                    | ");
@@ -382,4 +378,5 @@ flushinp();
 
     delwin(prova_complexa);
     endwin();
+    return 0;
 }

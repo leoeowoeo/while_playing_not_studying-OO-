@@ -2,6 +2,7 @@
 
 void desenhar_jogador(SAVE *save, int vira, int passo, int pisca, int cor, int selecao_face, int selecao_olhos, int selecao_pernas, int virahoriz)
 {
+    (void)cor;
     char *olhos[10] = {"##", "@@", "**", "$$", "vv", "><", "XX", "OO", "00", "oo"};
     char *faces[5] = {"(  )", "[  ]", "{  }", "<  >", "d  b"};
     char *pernas[4] = {"/|", "|\\", "<v", "v>"};

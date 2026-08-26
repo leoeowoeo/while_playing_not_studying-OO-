@@ -1,5 +1,5 @@
 #include "oo.h"
-void desenhar_gato(int Xall, int Yall, int armarioX, int armarioY, int vontadedepisca, int depoisprova)
+void desenhar_gato(int armarioX, int armarioY, int vontadedepisca, int depoisprova)
 {
     int gatoy = armarioY + 13, gatox = armarioX + 10;
     if (depoisprova == 0)

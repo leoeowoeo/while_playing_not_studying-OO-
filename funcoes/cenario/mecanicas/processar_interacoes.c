@@ -5,8 +5,18 @@ void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelho
      int *armarioaberto, int *interagirCam, int *interagirArm, int *interagirJan, int *interagirCel, int *interagirEst,
      int *marcar, int *jogarcelular5, int cor, int *revista_linha, int *revista_coluna, int *livro1, int *livro2, 
      int *livro3, int *abrindolivro, int *estudo, int *estudando, int *acertos, int vira,int estanteX, int estanteY, 
-     int interruptorX, int interruptorY, int *interruptorON, int *interagirInt)
+     int interruptorX, int interruptorY, int *interruptorON, int *interagirInt, int *interagirCaixa)
 {
+    (void)marcar;
+    (void)jogarcelular5;
+    (void)cor;
+    (void)revista_linha;
+    (void)revista_coluna;
+    (void)estudo;
+    (void)estudando;
+    (void)acertos;
+    (void)interagirCaixa;
+
     // ESPELHO
     if (save->y > espelhoy && save->y < espelhoy + 8 && save->x > espelhox - 2 && save->x < espelhox + 9 && vira % 2 == 1)
     {

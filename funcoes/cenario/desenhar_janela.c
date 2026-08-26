@@ -14,7 +14,7 @@ void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagi
         mvprintw(janelaY+4, janelaX, "  ---------   ");
         wattroff(stdscr, COLOR_PAIR(2));
         wattroff(stdscr, COLOR_PAIR(par));
-        desenhar_chuva(Xall, Yall, cor, chuvax, chuvay, pos, pos2, pos3, check);
+        desenhar_chuva(cor, chuvax, chuvay, pos, pos2, pos3, check);
     }
     else
     {

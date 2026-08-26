@@ -37,4 +37,5 @@ int slow_mvwprintw(WINDOW *win, const char *str, int y, int x, int delay_ms,int 
 
     flushinp();
     nodelay(win, FALSE);
+    return 0;
 }

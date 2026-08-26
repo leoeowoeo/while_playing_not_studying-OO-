@@ -1,6 +1,8 @@
 #include "oo.h"
 void movimentar_jogador(int tecla, int *xf, int *yf, int *passo, int *lado, int *vira, int Xall, int Yall,int *virahoriz)
 {
+    (void)Xall;
+    (void)Yall;
     switch (tecla)
     {
         case 'a': (*xf)--; /*if (*xf < 20 + Xall) *xf = 20 + Xall;*/ (*passo)++; *lado = 2; *virahoriz = 1; break;

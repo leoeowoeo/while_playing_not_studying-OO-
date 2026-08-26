@@ -22,14 +22,14 @@ flushinp();
     
     // Posições base globais
     int Xall = 40, Yall = 3;
-    int tecla = 0, i=0, j;
+    int tecla = 0, i=0;
     int marcar = 0;
     int marcar_confirmacao = 0; 
     int confirmado = 0; 
     int resposta_dada = 0;
     int resposta[5],respostacerta[5]={1,0,2,1,2};
     int cansando=2;
-    char *confirmacao[2] = {"[S] Sim, entregar a prova", "[N] Nao, quero rever"};
+
     
     // Vetores atualizados exatamente com os textos modificados da prova
     char *questao1[5] = {
@@ -320,8 +320,6 @@ flushinp();
         //CONFIRMAÇÃO
         if(confirmado != 0 && confirmado != 1)
         {
-            int Ycentro = Yall + 35; 
-            int Xcentro = Xall + 5;
             /*mvwprintw_cansado(provacansado_simples, Ycentro,     Xcentro, "/====================================================\\",cansando/4);
             mvwprintw_cansado(provacansado_simples, Ycentro + 1, Xcentro, "|      Tem certeza? Vai entregar a prova?            | ",cansando/4);
             mvwprintw_cansado(provacansado_simples, Ycentro + 2, Xcentro, "|                                                    | ",cansando/4);
@@ -387,6 +385,7 @@ flushinp();
     delwin(provacansado_simples);
 
     endwin();
+    return 0;
 }
 
 /*

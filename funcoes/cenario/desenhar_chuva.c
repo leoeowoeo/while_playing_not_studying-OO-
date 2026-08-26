@@ -1,5 +1,5 @@
 #include "oo.h"
-void desenhar_chuva(int Xall, int Yall, int cor, int chuvax, int chuvay, int *pos, int *pos2, int *pos3,int check)
+void desenhar_chuva(int cor, int chuvax, int chuvay, int *pos, int *pos2, int *pos3,int check)
 {
     
         if (cor == 1) wattron(stdscr, COLOR_PAIR(5));

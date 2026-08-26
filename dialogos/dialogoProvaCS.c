@@ -4,7 +4,6 @@ void dialogoprovacs()
 {
     int skipado = 0;
     int Xall=(COLS/2)-57, Yall=3;
-    int tecla=0, x=22+Xall, y=10+Yall;
     int marcar_arrumar = 0;
     int marcar_resposta = 0;
     int tecla_cena = 0;

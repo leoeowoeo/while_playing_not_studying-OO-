@@ -35,8 +35,8 @@ não tem parametro, retorna valor booleano true ou false, verifica se o terminal
 #define COR_CIANO          18
 #define COR_CINZAESCURO    19
 #define COR_CINZACLARO     20
-#define COR_CINZAMTESCUROMEIOMARROM 51
-#define COR_ESCURO 60
+#define COR_CINZAMTESCUROMEIOMARROM 62
+#define COR_ESCURO 61
 #define COR_BEMESCURO 60
 
 void inicializar_cores(SAVE *save, int interage, int *par)

@@ -33,6 +33,7 @@ typedef struct A_{
     char icone;
     int marcado;
     int quadradoachado;
+    int checado;
 } campo;
 
 void geracampo(int altura, int largura, campo matriz[altura][largura], int num_bombas);
@@ -61,7 +62,7 @@ vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela 
     int i,j;
     int altura = 16;
     int largura = 16;
-    int num_bombas = 35; // Ajustei para 100 pois um campo 30x30 (900 casas) com 20 bombas seria muito fácil
+    int num_bombas = 10; // Ajustei para 100 pois um campo 30x30 (900 casas) com 20 bombas seria muito fácil
 
     // Calcula o tamanho da janela da ncurses dinamicamente
     // Altura = (altura do jogo) + 2 (para as bordas)
@@ -73,7 +74,7 @@ vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela 
     int dificuldade = 0;
     int tecla_menu = 0;
     int timer=0,velocidade_timer=0;
-    int perdeu=0;
+    int perdeu=0, marcadoerrado=0,acerto,ganhou=0;
 
     while (tecla_menu != '\n') 
     {
@@ -115,7 +116,7 @@ vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela 
     {
         altura = 9;
         largura = 9;
-        num_bombas = 10;
+        num_bombas = 2;
     }
     else if(dificuldade==1)
     {
@@ -161,7 +162,41 @@ vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela 
 
 
 while (tecla != 'p')
+{
+    
+            //check de vitoria
+            if(ganhou==1){
+                werase(campominado);
+                mvwprintw(campominado,(altura * altura_do_quadrado) / 2, 2,"hahahah parabens some daqui agora otario");
+                wattron(campominado,A_BOLD);
+                mvwprintw(campominado,(altura * altura_do_quadrado) / 2, 2+34,"otario");
+                wattroff(campominado,A_BOLD);
+                wrefresh(campominado);
+                napms(2500);
+                break;
+            }
+
+    acerto = 0;
+    marcadoerrado = 0;
+
+    for(i = 0; i < altura; i++)
+    {
+        for(j = 0; j < largura; j++)
         {
+            if(matriz[i][j].marcado == 1) {
+                if(matriz[i][j].bomba == 1) {
+                    acerto++;
+                } else {
+                    marcadoerrado++;
+                }
+            }
+        }
+    }
+
+
+    if(acerto == num_bombas && marcadoerrado == 0){
+        ganhou = 1;
+    }
             //timer
             velocidade_timer++;
             if(velocidade_timer%33==0)

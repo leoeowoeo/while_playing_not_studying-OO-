@@ -63,7 +63,12 @@ void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int 
         if (*xf == rx && *yf == ry && (*xf - save->x) != 0) *xf = save->x;
         else if (*xf == rx && *yf == ry && (*yf - save->y) != 0) *yf = save->y;
     }
+    for(int i=Yall+)
     //armarioY+8
     //int armarioY = 12 + Yall
-    
+
+ /*      mvprintw(armarioY+8, armarioX+2, "|    |  | /");
+         mvprintw(armarioY+9, armarioX+2, "|    |  |/ ");
+         mvprintw(armarioY+10,armarioX+2, "|    | / ");
+         mvprintw(armarioY+11,armarioX+2, "|____|/");*/   
 }

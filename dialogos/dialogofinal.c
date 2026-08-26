@@ -236,5 +236,6 @@ int dialogofinal(int *finais_alcancados,int *acertos)
             return 0;
         }
     }
+    slow_mvwprintw(stdscr, "", linha_atual, Xall, *finais_alcancados,&skipado);
     return 0;
 }

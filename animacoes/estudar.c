@@ -129,6 +129,6 @@ void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *est
                             mvprintw(7, 10, "                                                         ");
                             mvprintw(save.y-2, save.x-8, "              ");
                             refresh();
-
+mvprintw(9, 7, "Aperta 'P' e finge que a gente leu tudo! Vai!          %d ",*estudo);
         }
 }

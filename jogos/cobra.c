@@ -56,7 +56,6 @@ int cobra(int *cor,int *jogarcelular)
     int maçãpegar=0;
     int score=0;
 
-    int teste=0;
 //---------------------------------------- 
 
     while(tecla!='p'){
@@ -232,7 +231,6 @@ int cobra(int *cor,int *jogarcelular)
         mvwprintw(cobra,Yallcobra+32,Xallcobra+1,"                                 ");
         trofeuy--;
         wrefresh(cobra);
-        teste++;
         napms(100);
         }
 

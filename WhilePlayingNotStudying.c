@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include "oo.h"
+
 #define TARGET_FRAME_MS 30
 #define COR_MARROM         8
 #define COR_JANELA         9
@@ -145,6 +147,7 @@ int main()
                 dormindo = 0;
                 while (1)
                 {
+
                     estanoquarto = 1;
                     gravar_imagem_do_momento(save.x, save.y, save.imagem);
                     if (tecla == 'm') menusave(&save, &jogar,estanoquarto);
@@ -273,6 +276,13 @@ int main()
                         for (int y = 0; y < LINES; y++)
                         {
                             mvchgat(y, 0, -1, A_DIM, 60, NULL);
+                        }
+                        if(!save.maepistola)
+                        {
+                            for (int y = 0; y < LINES; y++)
+                            {
+                                mvchgat(y, 0, -1, A_DIM, 60, NULL);
+                            }   
                         }
                     }
 

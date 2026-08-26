@@ -18,14 +18,14 @@ void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistola
         else
         {
             if (cor == 1) wattron(stdscr, COLOR_PAIR(6));
-            mvprintw(portaY, portaX+1,   "                   ");
-            mvprintw(portaY+1, portaX+1, "          _______  ");
-            mvprintw(portaY+2, portaX+1, "          |     |\\");
-            mvprintw(portaY+3, portaX+1, "          |     | |");
-            mvprintw(portaY+4, portaX+1, "          |(00) | |");
-            mvprintw(portaY+5, portaX+1, "          | ||  |*|");
-            mvprintw(portaY+6, portaX+11,          "I_____I |");
-            mvprintw(portaY+7, portaX+18,                "\\|");
+
+            mvprintw(portaY+1, portaX+11, "_______  ");
+            mvprintw(portaY+2, portaX+11, "|     |\\");
+            mvprintw(portaY+3, portaX+11, "|     | |");
+            mvprintw(portaY+4, portaX+11, "|(00) | |");
+            mvprintw(portaY+5, portaX+11, "| ||  |*|");
+            mvprintw(portaY+6, portaX+11, "I_____I |");
+            mvprintw(portaY+7, portaX+18,       "\\|");
             wattroff(stdscr, COLOR_PAIR(6));
             if (maexinga)
             {
@@ -63,14 +63,14 @@ void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistola
         else
         {
             if (cor == 1) wattron(stdscr, COLOR_PAIR(6));
-            mvprintw(portaY, portaX+1, "                   ");
-            mvprintw(portaY+1, portaX+1, "          _______  ");
-            mvprintw(portaY+2, portaX+1, "          |     |\\");
-            mvprintw(portaY+3, portaX+1, "          |     | |");
-            mvprintw(portaY+4, portaX+1, "          |(00) | |");
-            mvprintw(portaY+5, portaX+1, "          | ||  |*|");
-            mvprintw(portaY+6, portaX+11,          "I_____I |");
-            mvprintw(portaY+7, portaX+18,                 "\\|");
+            mvprintw(portaY, portaX+1,   "         ");
+            mvprintw(portaY+1, portaX+1, "_______  ");
+            mvprintw(portaY+2, portaX+1, "|     |\\");
+            mvprintw(portaY+3, portaX+1, "|     | |");
+            mvprintw(portaY+4, portaX+1, "|(00) | |");
+            mvprintw(portaY+5, portaX+1, "| ||  |*|");
+            mvprintw(portaY+6, portaX+11,"I_____I |");
+            mvprintw(portaY+7, portaX+18,      "\\|");
             wattroff(stdscr, COLOR_PAIR(6));
             if (acertos < 2)
             {

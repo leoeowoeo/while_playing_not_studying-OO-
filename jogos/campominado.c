@@ -121,7 +121,7 @@ vamo fazer isso, pegar a maior inundação possivel e dar um valor no meio dela 
     {
         altura = 16;
         largura = 16;
-        num_bombas =60;
+        num_bombas =40;
     }
     else
     {

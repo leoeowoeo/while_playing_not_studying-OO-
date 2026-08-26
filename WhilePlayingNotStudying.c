@@ -59,7 +59,7 @@ int main()
     int interruptorON = 1;
     int interagirInt = 0;
     int interruptorX = 16 + Xall; 
-    int interruptorY = 16 + Yall;
+    int interruptorY = 10 + Yall;
     int interagirCel = 0, interagirEst = 0, interagirArm = 0, interagirJan = 0, interagirCam = 0;
     int tecla_selecao, interage = 0,par = 0;
     int jogarcelular5 = 0, encararespelho = 0, dormircama = 0, jogartodosjogos = 0, ler1jogar3 = 0, ler3dormir = 0, ler3jogatodos = 0;

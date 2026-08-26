@@ -8,11 +8,11 @@ void desenhar_interruptor(int interruptorX, int interruptorY, int *interruptorON
 
     if (*interruptorON == 1) 
     {
-        mvprintw(interruptorY, interruptorX, "[d]");
+        mvprintw(interruptorY, interruptorX, "O");
     }
     else 
     {
-        mvprintw(interruptorY, interruptorX, "[b]"); 
+        mvprintw(interruptorY, interruptorX, "0"); 
     }
     if (*interagirInt == 1 && cor == 1) 
     {

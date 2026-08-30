@@ -1,7 +1,7 @@
 #include "oo.h"
-void desenhar_tapete(int Xall, int Yall, int cor)
+void desenhar_tapete(Cenario *objetos, int cor)
 {
-    int tapetey = 18 + Yall, tapetex = 47 + Xall;
+    int tapetey = objetos->tapete.y, tapetex = objetos->tapete.x;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(8));
     mvprintw(tapetey, tapetex,        ",~~~~~~~~~~~~~,");
     mvprintw(tapetey+1, tapetex-1,     "/    ~~~      /");

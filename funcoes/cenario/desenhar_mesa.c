@@ -1,7 +1,7 @@
 #include "oo.h"
-void desenhar_mesa(int Xall, int Yall, int cor)
+void desenhar_mesa(Cenario *objetos, int cor)
 {
-    int mesaY = 8 + Yall, mesaX = 72 + Xall;
+    int mesaY = objetos->mesa.y, mesaX = objetos->mesa.x;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(6));
     
     mvprintw(mesaY, mesaX,      " _____");

@@ -1,7 +1,7 @@
 #include "oo.h"
-void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos)
+void desenhar_porta(Cenario *objetos, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos)
 {
-    int portaY = 3 + Yall, portaX = 11 + Xall;
+    int portaY = objetos->porta.y, portaX = objetos->porta.x;
     if (depoisprova == 0)
     {
         if (maepistoladef == 1)

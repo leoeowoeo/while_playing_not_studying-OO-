@@ -1,7 +1,9 @@
 #include "oo.h"
-void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagirJan, int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check)
+void desenhar_janela(Cenario *objetos, int cor, int janelaaberta, int interagirJan, int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check)
 {
-    int janelaY = 4 + Yall, janelaX = 50 + Xall;
+    (void)chuvax;
+    (void)chuvay;
+    int janelaY = objetos->janela.y, janelaX = objetos->janela.x;
     if (janelaaberta == 0)
     {
         
@@ -14,7 +16,7 @@ void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagi
         mvprintw(janelaY+4, janelaX, "  ---------   ");
         wattroff(stdscr, COLOR_PAIR(2));
         wattroff(stdscr, COLOR_PAIR(par));
-        desenhar_chuva(cor, chuvax, chuvay, pos, pos2, pos3, check);
+        desenhar_chuva(objetos, cor, pos, pos2, pos3, check);
     }
     else
     {

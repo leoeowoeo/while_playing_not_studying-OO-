@@ -1,8 +1,13 @@
 #include "oo.h"
-void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int estanteX, int estanteY, int armarioX, int armarioY, int mesaX, int mesaY, int lixoX, int lixoY)
+void processar_colisoes(Cenario *objetos, int *xf, int *yf, SAVE *save)
 {   
-      int Xall = (COLS/2)-57;
-      int Yall = 3;  
+    int Xall = objetos->rodape.x - 21;
+    int Yall = objetos->rodape.y - 9;  
+    int camaX = objetos->cama.x, camaY = objetos->cama.y;
+    int estanteX = objetos->estante.x, estanteY = objetos->estante.y;
+    int armarioX = objetos->armario.x, armarioY = objetos->armario.y;
+    int mesaX = objetos->mesa.x, mesaY = objetos->mesa.y;
+    int lixoX = objetos->lixo.x, lixoY = objetos->lixo.y;
     
     //colisao cama
     for (int i = camaX - 1, j = camaY-1; j < camaY + 5; i--,j++)

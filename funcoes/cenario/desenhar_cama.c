@@ -1,7 +1,7 @@
 #include "oo.h"
-void desenhar_cama(int Xall, int Yall, int cor, int interagirCam, int par)
+void desenhar_cama(Cenario *objetos, int cor, int interagirCam, int par)
 {
-    int camaY = 8 + Yall, camaX = 80 + Xall;
+    int camaY = objetos->cama.y, camaX = objetos->cama.x;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(1));
     if (cor == 1) wattron(stdscr, COLOR_PAIR(4));
     if (interagirCam == 1 && cor == 1) wattron(stdscr, COLOR_PAIR(par));

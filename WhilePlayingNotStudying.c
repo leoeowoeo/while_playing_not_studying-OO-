@@ -27,6 +27,7 @@ int main()
     cbreak();
     noecho();
     int Xall = (COLS/2)-57, Yall = 3;
+    Cenario objetos = {0};
     SAVE save;
     save.atividade_sono = 0;
     save.celularpickup = 0;
@@ -47,19 +48,32 @@ int main()
     save.selecao_olhos=9;
     save.selecao_pernas=0;
     save.selecao_cor=0;
+    save.caixacaindo=0;
     int tecla = 0;
     int xf = 22 + Xall, yf = 10 + Yall, lado = 0;
-    int janelaY = 4 + Yall, janelaX = 50 + Xall;
-    int celularY = 9 + Yall, celularX = 76 + Xall;
-    int armarioY = 14 + Yall, armarioX = 19 + Xall, armarioaberto = 0, dormindo = 0;
+    objetos.janela.x = 50 + Xall; objetos.janela.y = 4 + Yall;
+    objetos.celular.x = 76 + Xall; objetos.celular.y = 9 + Yall;
+    objetos.armario.x = 19 + Xall; objetos.armario.y = 14 + Yall;
+    objetos.cama.x = 80 + Xall; objetos.cama.y = 8 + Yall;
+    objetos.estante.x = 34 + Xall; objetos.estante.y = 5 + Yall;
+    objetos.mesa.x = 74 + Xall; objetos.mesa.y = 8 + Yall;
+    objetos.lixo.x = 84 + Xall; objetos.lixo.y = 27 + Yall;
+    objetos.rodape.x = 21 + Xall; objetos.rodape.y = 9 + Yall;
+    objetos.espelho.x = 63 + Xall; objetos.espelho.y = 3 + Yall;
+    objetos.interruptor.x = 16 + Xall; objetos.interruptor.y = 16 + Yall;
+    objetos.porta.x = 11 + Xall; objetos.porta.y = 3 + Yall;
+    objetos.tapete.x = 47 + Xall; objetos.tapete.y = 18 + Yall;
+    objetos.caixa.x = 34 + Xall; objetos.caixa.y = 5 + Yall;
+    objetos.gato.x = objetos.armario.x + 10; objetos.gato.y = objetos.armario.y + 13;
+    objetos.chuva.x = 53 + Xall; objetos.chuva.y = 5 + Yall;
+    int celularY = objetos.celular.y, celularX = objetos.celular.x;
+    int armarioaberto = 0, dormindo = 0;
     int revistax = celularX, revistay = celularY;
     int livroX = celularX + 17, livroY = celularY, abrindolivro = 0;
     int livro1 = 0, livro2 = 0, livro3 = 0, estudando = 0;
     int acertos = 0;
     int interruptorON = 1;
     int interagirInt = 0;
-    int interruptorX = 16 + Xall; 
-    int interruptorY = 16 + Yall;
     int interagirCel = 0, interagirEst = 0, interagirArm = 0, interagirJan = 0, interagirCam = 0,interagirCaixa = 0;
     int interage = 0,par = 0;
     int jogarcelular5 = 0, encararespelho = 0, dormircama = 0, jogartodosjogos = 0, ler1jogar3 = 0, ler3dormir = 0, ler3jogatodos = 0;
@@ -132,7 +146,7 @@ int main()
             keypad(stdscr, TRUE);
         }
         int pisca = 1, vontadedepisca = 0;
-        int chuvax = 53 + Xall, chuvay = 5 + Yall, pos = 0, pos2 = 1, pos3 = 2;
+        int chuvax = objetos.chuva.x, chuvay = objetos.chuva.y, pos = 0, pos2 = 1, pos3 = 2;
         while (1)
         {
             if (save.depoisprova == 1) { save.x = 22 + Xall; save.y = 10 + Yall; }
@@ -166,33 +180,29 @@ int main()
                     else vontadedepisca = 0;
                     erase();
                     // ===== DESENHO DO QUARTO =====
-                    int camaY = 8 + Yall, camaX = 80 + Xall;
-                    int estanteY = 5 + Yall, estanteX = 34 + Xall;
-                    int mesaY = 8 + Yall, mesaX = 74 + Xall;
-                    int lixoY = 27 + Yall, lixoX = 84 + Xall;
-                    int rodapey = 9 + Yall, rodapex = 21 + Xall;
-                    int espelhoy = 3 + Yall, espelhox = 63 + Xall;
+                    int rodapey = objetos.rodape.y, rodapex = objetos.rodape.x;
+                    int espelhoy = objetos.espelho.y, espelhox = objetos.espelho.x;
                     //==========================DESENHA O QUARTO===========================
-                    desenhar_rodape(Xall, Yall,save.cor);
-                    desenhar_cama(Xall, Yall,save.cor, interagirCam, par);
-                    desenhar_estante(Xall, Yall,save.cor, interagirEst, par, &save, celularX, celularY);
-                    desenhar_caixa(Xall, Yall, save.cor, interagirCaixa, par, &save);
-                    desenhar_mesa(Xall, Yall,save.cor);
+                    desenhar_rodape(&objetos, save.cor);
+                    desenhar_cama(&objetos, save.cor, interagirCam, par);
+                    desenhar_estante(&objetos, save.cor, interagirEst, par, &save);
+                    desenhar_caixa(&objetos, save.cor, interagirCaixa, par, &save);
+                    desenhar_mesa(&objetos, save.cor);
                     espelhaogaroto(&save, espelhox, espelhoy, pisca,save.selecao_face,save.selecao_pernas,save.selecao_olhos,passo,vira,virahoriz);
-                    desenhar_espelho(Xall, Yall,save.cor, par);
-                    desenhar_janela(Xall, Yall,save.cor,save.janelaaberta, interagirJan, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
+                    desenhar_espelho(&objetos, save.cor, par);
+                    desenhar_janela(&objetos, save.cor,save.janelaaberta, interagirJan, par,chuvax, chuvay, &pos, &pos2, &pos3,check);
                     //void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagirJan, int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check)
-                    desenhar_interruptor(interruptorX, interruptorY, &interruptorON, &interagirInt,par,save.cor);
-                    desenhar_armario(Xall, Yall,save.cor, armarioaberto, interagirArm, par);
-                    desenhar_porta(Xall, Yall,save.cor,save.depoisprova,save.maepistoladef,maexinga, acertos);
+                    desenhar_interruptor(&objetos, &interruptorON, &interagirInt,par,save.cor);
+                    desenhar_armario(&objetos, save.cor, armarioaberto, interagirArm, par);
+                    desenhar_porta(&objetos, save.cor,save.depoisprova,save.maepistoladef,maexinga, acertos);
                     //void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos)
-                    desenhar_lixo(Xall, Yall,save.cor);
-                    desenhar_tapete(Xall, Yall,save.cor);
-                    desenhar_gato(armarioX, armarioY, vontadedepisca, save.depoisprova);
-                    desenhar_celular_mesa(&save, celularX, celularY, interagirCel, par);
+                    desenhar_lixo(&objetos, save.cor);
+                    desenhar_tapete(&objetos, save.cor);
+                    desenhar_gato(&objetos, vontadedepisca, save.depoisprova);
+                    desenhar_celular_mesa(&objetos, &save, interagirCel, par);
                     desenhar_jogador(&save, vira, passo, pisca,save.cor, save.selecao_face, save.selecao_olhos, save.selecao_pernas,virahoriz);
                     desenhar_hud(ybarra, xbarra,save.cor, &save, jogarcelular5, encararespelho, dormircama, jogartodosjogos, ler1jogar3, ler3jogatodos, ler3dormir, quests);
-                    if(save.celularpickup==1) printar_celular(save,celularX,celularY);
+                    if(save.celularpickup==1) printar_celular(&objetos, save);
                     check++;//fazer chover
                     if(save.maepistola>150)
                         save.maepistoladef=1;
@@ -202,17 +212,16 @@ int main()
                     movimentar_jogador(tecla, &xf, &yf, &passo, &lado, &vira, Xall, Yall,&virahoriz);
                     check++;
                     if (check > 100) { check = 0; passo = 0; }
-                    processar_colisoes(&xf, &yf, &save, camaX, camaY, estanteX, estanteY, armarioX, armarioY, mesaX, mesaY, lixoX, lixoY);
+                    processar_colisoes(&objetos, &xf, &yf, &save);
                     save.x = xf; save.y = yf;
                     check++;
                     if (check > 100) { check = 0; passo = 0; }
                     // ===== INTERAÇÕES =====
-                    processar_interacoes(&save, tecla, Xall, Yall, espelhox, espelhoy, camaX, camaY, armarioX, armarioY,
-                    janelaX, janelaY, celularX, celularY, &espelho, &dormindo, &armarioaberto, &interagirCam,
+                    processar_interacoes(&objetos, &save, tecla, Xall, Yall, &espelho, &dormindo, &armarioaberto, &interagirCam,
                     &interagirArm, &interagirJan, &interagirCel, &interagirEst, &marcar, &jogarcelular5,save.cor,
                     &revista_linha, &revista_coluna, &livro1, &livro2, &livro3, &abrindolivro, &estudo, &estudando,
-                    &acertos, vira, estanteX, estanteY,interruptorX, interruptorY, &interruptorON, &interagirInt,&interagirCaixa);
-                    desenhanafrente( Xall,  Yall,  save.cor,  armarioaberto,  interagirArm,  par, lixoY,  lixoX);
+                    &acertos, vira, &interruptorON, &interagirInt, &interagirCaixa);
+                    desenhanafrente(&objetos, save.cor,  armarioaberto,  interagirArm,  par);
                     // ===== ESPELHO MINIGAME =====
                     if (espelho == 1)
                     {
@@ -232,7 +241,7 @@ int main()
                         for (int i = 0; i < 3; i++)
                         {
                             if (i == marcar) attron(A_REVERSE);
-                            mvprintw(celularY + 4 + i, celularX + 21, "%s", jogar[i]);
+                            mvprintw(objetos.celular.y + 4 + i, objetos.celular.x + 21, "%s", jogar[i]);
                             attroff(A_REVERSE);
                         }
                         switch (tecla)

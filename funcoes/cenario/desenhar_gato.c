@@ -1,7 +1,7 @@
 #include "oo.h"
-void desenhar_gato(int armarioX, int armarioY, int vontadedepisca, int depoisprova)
+void desenhar_gato(Cenario *objetos, int vontadedepisca, int depoisprova)
 {
-    int gatoy = armarioY + 13, gatox = armarioX + 10;
+    int gatoy = objetos->gato.y, gatox = objetos->gato.x;
     if (depoisprova == 0)
     {wattron(stdscr, A_ITALIC);
         mvprintw(gatoy, gatox, "(\\   /)");

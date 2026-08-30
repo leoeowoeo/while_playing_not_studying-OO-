@@ -2,6 +2,9 @@
 void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *estudo,int *tecla,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check){
     nodelay(stdscr,TRUE);    
     int Xall = (COLS/2)-57, Yall = 3;
+    Cenario objetos = {0};
+    objetos.chuva.x = chuvax;
+    objetos.chuva.y = chuvay;
         wattron(stdscr, A_BOLD);
         mvprintw(Yall+33, Xall+47, "Estudar livro?:R");
         wattroff(stdscr, A_BOLD);
@@ -121,7 +124,7 @@ void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *est
                                     refresh(); napms(1500); estudo++; save.atividade_sono++; break; 
                                 }
                                 check++;
-                                desenhar_chuva(save.cor,chuvax,chuvay, pos, pos2, pos3,check);
+                                desenhar_chuva(&objetos, save.cor, pos, pos2, pos3,check);
                                 refresh(); napms(30); cont += 70;
                             }
                             mvprintw(5, 10, "                                                         ");

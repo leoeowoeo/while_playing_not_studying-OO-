@@ -1,7 +1,7 @@
 #include "oo.h"
-void desenhar_estante(int Xall, int Yall, int cor, int interagirEst, int par, SAVE *save, int celularX, int celularY)
+void desenhar_estante(Cenario *objetos, int cor, int interagirEst, int par, SAVE *save)
 { 
-    int estanteY = 5 + Yall, estanteX = 34 + Xall;
+    int estanteY = objetos->estante.y, estanteX = objetos->estante.x;
     if (interagirEst == 1 && cor == 1)
     wattron(stdscr, COLOR_PAIR(par));
     if (cor == 1)  wattron(stdscr, COLOR_PAIR(7));
@@ -17,5 +17,5 @@ void desenhar_estante(int Xall, int Yall, int cor, int interagirEst, int par, SA
     wattroff(stdscr, COLOR_PAIR(7));
     wattroff(stdscr, COLOR_PAIR(par));
     gravar_imagem_do_momento(save->x, save->y, save->imagem);
-    printar_imagem_do_momento(celularX+18, celularY, save->imagem);
+    printar_imagem_do_momento(objetos->celular.x+18, objetos->celular.y, save->imagem);
 }

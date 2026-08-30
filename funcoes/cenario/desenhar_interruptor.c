@@ -1,5 +1,5 @@
 #include "oo.h"
-void desenhar_interruptor(int interruptorX, int interruptorY, int *interruptorON, int *interagirInt, int par, int cor)
+void desenhar_interruptor(Cenario *objetos, int *interruptorON, int *interagirInt, int par, int cor)
 {
     if (*interagirInt == 1 && cor == 1) 
     {
@@ -8,11 +8,11 @@ void desenhar_interruptor(int interruptorX, int interruptorY, int *interruptorON
 
     if (*interruptorON == 1) 
     {
-        mvprintw(interruptorY+1, interruptorX, "O");
+        mvprintw(objetos->interruptor.y+1, objetos->interruptor.x, "O");
     }
     else 
     {
-        mvprintw(interruptorY+1, interruptorX, "0"); 
+        mvprintw(objetos->interruptor.y+1, objetos->interruptor.x, "0"); 
     }
     if (*interagirInt == 1 && cor == 1) 
     {

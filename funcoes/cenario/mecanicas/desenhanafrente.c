@@ -1,7 +1,10 @@
 #include "oo.h"
-void desenhanafrente(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par,int lixoY, int lixoX)
+void desenhanafrente(Cenario *objetos, int cor, int armarioaberto, int interagirArm, int par)
 {
-    int armarioY = 12 + Yall, armarioX = 6 + Xall;
+    int Xall = objetos->armario.x - 19;
+    int Yall = objetos->armario.y - 14;
+    int lixoY = objetos->lixo.y, lixoX = objetos->lixo.x;
+    int armarioY = objetos->armario.y - 2, armarioX = objetos->armario.x - 13;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(6));
     if (armarioaberto == 1)
     {

@@ -1,6 +1,8 @@
 #include "oo.h"
-void desenhar_armario(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par)
+void desenhar_armario(Cenario *objetos, int cor, int armarioaberto, int interagirArm, int par)
 {
+    int Xall = objetos->armario.x - 19;
+    int Yall = objetos->armario.y - 14;
     int armarioY = 12 + Yall, armarioX = 6 + Xall;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(6));
     if (armarioaberto == 1)

@@ -34,7 +34,34 @@ typedef struct SAVE_
         int selecao_pernas;
         int selecao_cor;
         int cor;
+        int caixacaindo;
 }SAVE;
+// ADICIONAR NO oo.h, ANTES DA struct SAVE_
+typedef struct {
+    int x, y;
+} Posicao;           // UM PAR DE COORDENADAS X,Y
+
+typedef struct {
+    Posicao armario;
+    Posicao caixa;
+    Posicao cama;
+    Posicao celular;
+    Posicao chuva;
+    Posicao espelho;
+    Posicao estante;
+    Posicao gato;
+    Posicao interruptor;
+    Posicao janela;
+    Posicao lixo;
+    Posicao mesa;
+    Posicao porta;
+    Posicao rodape;
+    Posicao tapete;
+
+
+} Cenario;           // TODAS AS COORDENADAS DOS OBJETOS DO QUARTO
+
+
 
 int inicio(int *interage,int *iniciar,int *epilepsia,SAVE *save,int *jogar,int estanoquarto);
 //int inicio(int *interage,int *iniciar,int *epilepsia,SAVE save,int *jogar,int estanoquarto)
@@ -70,45 +97,42 @@ void desenha_borda(int x, int y);
 void animacaomenu(int yselecao,int xselecao);
 void animacaopequenina(int yselecao,int xselecao);
 void inicializar_cores(SAVE *save, int interage, int *par);
-void desenhar_cama(int Xall, int Yall, int cor, int interagirCam, int par);
-void desenhar_estante(int Xall, int Yall, int cor, int interagirEst, int par,
-                        SAVE *save, int celularX, int celularY);
-void desenhar_mesa(int Xall, int Yall, int cor);
-void desenhar_armario(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par);
-void desenhar_espelho(int Xall, int Yall, int cor, int par);
-void desenhar_janela(int Xall, int Yall, int cor, int janelaaberta, int interagirJan, 
+void desenhar_cama(Cenario *objetos, int cor, int interagirCam, int par);
+void desenhar_estante(Cenario *objetos, int cor, int interagirEst, int par,
+                        SAVE *save);
+void desenhar_mesa(Cenario *objetos, int cor);
+void desenhar_armario(Cenario *objetos, int cor, int armarioaberto, int interagirArm, int par);
+void desenhar_espelho(Cenario *objetos, int cor, int par);
+void desenhar_janela(Cenario *objetos, int cor, int janelaaberta, int interagirJan, 
                      int par,int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check);
-void desenhar_porta(int Xall, int Yall, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos);
-void desenhar_lixo(int Xall, int Yall, int cor);
-void desenhar_tapete(int Xall, int Yall, int cor);
-void desenhar_rodape(int Xall, int Yall, int cor);
-void desenhar_gato(int armarioX, int armarioY, int vontadedepisca, int depoisprova);
-void desenhar_celular_mesa(SAVE *save, int celularX, int celularY, int interagirCel, int par);
-void desenhar_chuva(int cor, int chuvax, int chuvay, int *pos, int *pos2, int *pos3, int check);
+void desenhar_porta(Cenario *objetos, int cor, int depoisprova, int maepistoladef, int maexinga, int acertos);
+void desenhar_lixo(Cenario *objetos, int cor);
+void desenhar_tapete(Cenario *objetos, int cor);
+void desenhar_rodape(Cenario *objetos, int cor);
+void desenhar_gato(Cenario *objetos, int vontadedepisca, int depoisprova);
+void desenhar_celular_mesa(Cenario *objetos, SAVE *save, int interagirCel, int par);
+void desenhar_chuva(Cenario *objetos, int cor, int *pos, int *pos2, int *pos3, int check);
 void desenhar_jogador(SAVE *save, int vira, int passo, int pisca,
                         int cor, int selecao_face, int selecao_olhos, int selecao_pernas, int virahoriz);
 void desenhar_hud(int ybarra, int xbarra, int cor, SAVE *save, int jogarcelular5, int encararespelho,
                    int dormircama, int jogartodosjogos, int ler1jogar3, int ler3jogatodos, int ler3dormir, char *quests[]);
 void movimentar_jogador(int tecla, int *xf, int *yf, int *passo, int *lado, int *vira, int Xall, int Yall,int *virahoriz);
-void processar_colisoes(int *xf, int *yf, SAVE *save, int camaX, int camaY, int estanteX,
-                        int estanteY, int armarioX, int armarioY, int mesaX, int mesaY, int lixoX, int lixoY);
-void processar_interacoes(SAVE *save, int tecla, int Xall, int Yall, int espelhox, int espelhoy, int camaX,    
-                        int camaY, int armarioX, int armarioY, int janelaX, int janelaY, int celularX, int celularY,    
-                        int *espelho, int *dormindo, int *armarioaberto, int *interagirCam, int *interagirArm, 
+void processar_colisoes(Cenario *objetos, int *xf, int *yf, SAVE *save);
+void processar_interacoes(Cenario *objetos, SAVE *save, int tecla, int Xall, int Yall,
+                        int *espelho, int *dormindo, int *armarioaberto, int *interagirCam, int *interagirArm,
                         int *interagirJan, int *interagirCel, int *interagirEst, int *marcar, int *jogarcelular5,
-                        int cor, int *revista_linha, int *revista_coluna,	int *livro1,	int *livro2,	
-                        int *livro3,	int *abrindolivro,	int *estudo,	int *estudando,	int *acertos,	
-                        int vira,	int estanteX,	int estanteY,
-                        int interruptorX, int interruptorY, int *interruptorON, int *interagirInt,int *interagirCaixa);
+                        int cor, int *revista_linha, int *revista_coluna,	int *livro1,	int *livro2,
+                        int *livro3,	int *abrindolivro,	int *estudo,	int *estudando,	int *acertos,
+                        int vira, int *interruptorON, int *interagirInt,int *interagirCaixa);
 void espelhaogaroto(SAVE *save, int espelhox, int espelhoy, int pisca,int selecao_face,int selecao_pernas,
                         int selecao_olhos,int passo,int vira,int virahoriz);
-void desenhar_interruptor(int interruptorX, int interruptorY, int *interruptorON, int *interagirInt, int par, int cor);
-void printar_celular(SAVE save,int celularX,int celularY);
+void desenhar_interruptor(Cenario *objetos, int *interruptorON, int *interagirInt, int par, int cor);
+void printar_celular(Cenario *objetos,SAVE save);
 void printapracelular(int Xall,int Yall,int posy, int posx);
 void printar_livro(int livropickup, int *abrindolivro, int livro1, int livro2, int livro3, int livroY, int livroX );
-void desenhanafrente(int Xall, int Yall, int cor, int armarioaberto, int interagirArm, int par,int lixoY, int lixoX);
+void desenhanafrente(Cenario *objetos, int cor, int armarioaberto, int interagirArm, int par);
 void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *estudo,int *tecla,int chuvax, int chuvay,
                        int *pos, int *pos2, int *pos3, int check);
-void desenhar_caixa(int Xall, int Yall, int cor, int interagirCaixa, int par, SAVE *save);
+void desenhar_caixa(Cenario *objetos, int cor, int interagirCaixa, int par, SAVE *save);
 int campominado();
 #endif

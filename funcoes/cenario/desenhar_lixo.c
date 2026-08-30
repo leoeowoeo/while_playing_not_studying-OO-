@@ -1,8 +1,8 @@
 #include "oo.h"
-void desenhar_lixo(int Xall, int Yall, int cor)
+void desenhar_lixo(Cenario *objetos, int cor)
 {
     wattron(stdscr, A_ITALIC);
-    int lixoY = 27 + Yall, lixoX = 63 + Xall;
+    int lixoY = objetos->lixo.y, lixoX = objetos->lixo.x;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(15));
     mvprintw(lixoY+1, lixoX,  "|###|");
     mvprintw(lixoY+2, lixoX, " \\#/");

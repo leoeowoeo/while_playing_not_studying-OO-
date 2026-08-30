@@ -1,7 +1,9 @@
 #include "oo.h"
-void desenhar_rodape(int Xall, int Yall, int cor)
+void desenhar_rodape(Cenario *objetos, int cor)
 {
-int rodapey = 9 + Yall, rodapex = 41 + Xall;
+int Xall = objetos->rodape.x - 21;
+int Yall = objetos->rodape.y - 9;
+int rodapey = objetos->rodape.y, rodapex = objetos->rodape.x + 20;
 if (cor == 1) wattron(stdscr, COLOR_PAIR(9));
 mvprintw(rodapey+21, rodapex-41, "_______________________________________________________________________");
 for (rodapex=Xall+24; rodapex < 93 + Xall; rodapex++)

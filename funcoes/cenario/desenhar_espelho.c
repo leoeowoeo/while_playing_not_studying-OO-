@@ -1,7 +1,7 @@
 #include "oo.h"
-void desenhar_espelho(int Xall, int Yall, int cor, int par)
+void desenhar_espelho(Cenario *objetos, int cor, int par)
 {
-    int espelhoy = 3 + Yall, espelhox = 63 + Xall;
+    int espelhoy = objetos->espelho.y, espelhox = objetos->espelho.x;
     if (cor == 1) wattron(stdscr, COLOR_PAIR(11));
     if (cor == 1) wattron(stdscr, COLOR_PAIR(2));
     mvprintw(espelhoy, espelhox, " ,_,_,_,_,");

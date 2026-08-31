@@ -47,3 +47,22 @@ voce estiver com o livro na mão, estudando, etc
 
 
 ADICIONAR UM JOGO DA VELHA, JOGAVEL COM ARVORE
+
+
+
+
+
+
+
+
+
+
+Na luta com pitagoras:
+Um plano onde voce pode clicar pra trocar de 5 linhas, ou mais, e ai vai ter um caminho e voce vai ter q ir seguindo por ele, ( vai ter uma função e voce vai indo pra cima ou pra baixo pra seguir a linha da função)
+
+na outra vai ser tipo uma batalha da undine, vão ser vetores indo na sua direção
+
+
+queria fazer algo com matrizes tbm
+
+queria fazer algo com formas geométricas ( PRINCIPALENTE OS TRIANGULOS)

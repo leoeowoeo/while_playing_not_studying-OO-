@@ -9,6 +9,7 @@ SRC = funcoes/demo.c \
       jogos/pedrapapeltesoura.c \
       jogos/cobra.c \
       jogos/campominado.c \
+      jogos/jogodaevlha.c \
       animacoes/dormir.c \
       animacoes/cair_no_sono.c \
       animacoes/animacaomenu.c \

@@ -135,4 +135,5 @@ void estudar(SAVE save,int livro1, int livro2,int livro3,int *estudando,int *est
                        int *pos, int *pos2, int *pos3, int check);
 void desenhar_caixa(Cenario *objetos, int cor, int interagirCaixa, int par, SAVE *save);
 int campominado();
+void jogodavelha();
 #endif

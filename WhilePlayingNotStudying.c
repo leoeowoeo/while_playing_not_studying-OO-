@@ -237,7 +237,7 @@ int main()
                     // ===== CELULAR MENU =====
                     if (save.celularpickup == 1)
                     {
-                        char *jogar[3] = {"cobrinha", "campo minado", "batalha naval"};
+                        char *jogar[3] = {"cobrinha", "campo minado", "jogo da velha"};
                         for (int i = 0; i < 3; i++)
                         {
                             if (i == marcar) attron(A_REVERSE);
@@ -249,8 +249,9 @@ int main()
                             case KEY_UP: marcar--; if (marcar == -1) marcar = 2; break;
                             case KEY_DOWN: marcar++; if (marcar > 2) marcar = 0; break;
                             case '\n':
-                                if (marcar == 0) { cobra(&save.cor, &jogarcelular5); save.atividade_sono++; marcar = 0; }
-                                if (marcar == 1) {printapracelular(Xall, Yall, rodapey-5, rodapex-4); campominado(); marcar = 0; }
+                                if (marcar == 0) { cobra(&save.cor, &jogarcelular5); save.atividade_sono++; marcar = 0;flushinp(); }
+                                if (marcar == 1) {printapracelular(Xall, Yall, rodapey-5, rodapex-4); campominado(); marcar = 0;flushinp(); }
+                                if (marcar == 2) { printapracelular(Xall, Yall, rodapey-5, rodapex-4); jogodavelha(); save.atividade_sono++; marcar = 0; flushinp();}
                                 break;
                         }
                     }

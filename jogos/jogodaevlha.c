@@ -1,8 +1,6 @@
 #include "oo.h"
 
-static char simbolo_da_celula(int tabuleiro[3][3],
-                              int marcacoes[3][3],
-                              int linha, int coluna)
+char simbolo_da_celula(int tabuleiro[3][3],int marcacoes[3][3],int linha, int coluna)
 {
     if (tabuleiro[linha][coluna] == 1)
         return 'X';
@@ -10,29 +8,19 @@ static char simbolo_da_celula(int tabuleiro[3][3],
     if (tabuleiro[linha][coluna] == 2)
         return 'O';
 
-    if (marcacoes[linha][coluna] == 1)
-        return '!';
-
-    if (marcacoes[linha][coluna] == 2)
-        return '?';
-
     return ' ';
 }
 
-static void alternar_marcacao(int tabuleiro[3][3],
-                              int marcacoes[3][3],
-                              int linha, int coluna)
+void alternar_marcacao(int tabuleiro[3][3],int marcacoes[3][3],int linha, int coluna)
 {
     if (tabuleiro[linha][coluna] != 0)
+    {
         return;
-
+    }
     marcacoes[linha][coluna]++;
-
-    if (marcacoes[linha][coluna] > 2)
-        marcacoes[linha][coluna] = 0;
 }
 
-static int verificar_vencedor(int tabuleiro[3][3])
+int verificar_vencedor(int tabuleiro[3][3])
 {
     for (int i = 0; i < 3; i++)
     {
@@ -77,28 +65,23 @@ static int verificar_vencedor(int tabuleiro[3][3])
     return 3;
 }
 
-static void desenhar_tabuleiro(WINDOW *jogodavelha,
-                               int tabuleiro[3][3],
-                               int marcacoes[3][3],
-                               int selecao_linha,
-                               int selecao_coluna,
-                               int jogador_atual)
+void desenhar_tabuleiro(WINDOW *jogodavelha,int tabuleiro[3][3],int marcacoes[3][3],int selecao_linha,int selecao_coluna,int jogadorXouO)
 {
     int tabuleiro_largura = (15) + ((3 - 1));
     int tabuleiro_altura = (9) + ((3 - 1));
-    int origem_y = (LINES - tabuleiro_altura) / 2;
-    int origem_x = (COLS - tabuleiro_largura) / 2;
+    int inicioy = (LINES - tabuleiro_altura) / 2;
+    int iniciox = (COLS - tabuleiro_largura) / 2;
 
-    if (origem_y < 3)
-        origem_y = 3;
+    if (inicioy < 3)
+        inicioy = 3;
 
-    if (origem_x < 2)
-        origem_x = 2;
+    if (iniciox < 2)
+        iniciox = 2;
 
     werase(jogodavelha);
     box(jogodavelha, 0, 0);
     mvwprintw(jogodavelha, 1, 2,"Jogo da velha| Jogue com Enter | p sai");
-    if (jogador_atual == 1)
+    if (jogadorXouO == 1)
     {
         mvwprintw(jogodavelha, 1+3, 2,"\\  /");
         mvwprintw(jogodavelha, 2+3, 2," \\/ ");
@@ -117,8 +100,8 @@ static void desenhar_tabuleiro(WINDOW *jogodavelha,
     {
         for (int coluna = 0; coluna < 3; coluna++)
         {
-            int celula_y = origem_y + (linha * (3 + 1));
-            int celula_x = origem_x + (coluna * (5 + 1));
+            int celula_y = inicioy + (linha * (3 + 1));
+            int celula_x = iniciox + (coluna * (5 + 1));
             int selecionada = (linha == selecao_linha && coluna == selecao_coluna);
 
             if (selecionada)
@@ -132,11 +115,7 @@ static void desenhar_tabuleiro(WINDOW *jogodavelha,
                 }
             }
 
-            mvwprintw(jogodavelha,
-                       celula_y + (3 / 2),
-                       celula_x + (5 / 2),
-                       "%c",
-                       simbolo_da_celula(tabuleiro, marcacoes, linha, coluna));
+            mvwprintw(jogodavelha,celula_y + (3 / 2),celula_x + (5 / 2),"%c",simbolo_da_celula(tabuleiro, marcacoes, linha, coluna));
 
             if (selecionada)
                 wattroff(jogodavelha, A_REVERSE);
@@ -145,14 +124,14 @@ static void desenhar_tabuleiro(WINDOW *jogodavelha,
 
     for (int linha = 0; linha < 3 - 1; linha++)
     {
-        int separador_y = origem_y + ((linha + 1) * 3) + linha;
-        mvwhline(jogodavelha, separador_y, origem_x, ACS_HLINE, tabuleiro_largura);
+        int separador_y = inicioy + ((linha + 1) * 3) + linha;
+        mvwhline(jogodavelha, separador_y, iniciox, ACS_HLINE, tabuleiro_largura);
     }
 
     for (int coluna = 0; coluna < 3 - 1; coluna++)
     {
-        int separador_x = origem_x + ((coluna + 1) * 5) + coluna;
-        mvwvline(jogodavelha, origem_y, separador_x, ACS_VLINE, tabuleiro_altura);
+        int separador_x = iniciox + ((coluna + 1) * 5) + coluna;
+        mvwvline(jogodavelha, inicioy, separador_x, ACS_VLINE, tabuleiro_altura);
     }
 
     wrefresh(jogodavelha);
@@ -164,12 +143,14 @@ void jogodavelha()
     int marcacoes[3][3] = {0};
     int selecao_linha = 0;
     int selecao_coluna = 0;
-    int jogador_atual = 1;
-    int vencedor = 0;
+    int jogadorXouO = 1;
+    int vezdojogador = 1;
+    int venceu = 0;// acho que vou deixar como 0,1 e 2;
     int tecla = 0;
     int vitorias_x = 0;
     int vitorias_o = 0;
     int rodada = 1;
+    int vezdobot=0;
 
     curs_set(0);
     noecho();
@@ -182,7 +163,7 @@ void jogodavelha()
 
     while (tecla != 'p' && tecla != 'q' && vitorias_x < 2 && vitorias_o < 2)
     {
-        desenhar_tabuleiro(janela_jogo, tabuleiro, marcacoes, selecao_linha, selecao_coluna, jogador_atual);
+        desenhar_tabuleiro(janela_jogo, tabuleiro, marcacoes, selecao_linha, selecao_coluna, jogadorXouO);
         tecla = wgetch(janela_jogo);
 
         switch (tecla)
@@ -215,36 +196,32 @@ void jogodavelha()
                     selecao_linha = 0;
                 break;
 
-            case ' ':
-                alternar_marcacao(tabuleiro, marcacoes, selecao_linha, selecao_coluna);
-                break;
-
             case '\n':
             case KEY_ENTER:
                 if (tabuleiro[selecao_linha][selecao_coluna] == 0)
                 {
-                    tabuleiro[selecao_linha][selecao_coluna] = jogador_atual;
+                    tabuleiro[selecao_linha][selecao_coluna] = jogadorXouO;
                     marcacoes[selecao_linha][selecao_coluna] = 0;
-                    vencedor = verificar_vencedor(tabuleiro);
+                    venceu = verificar_vencedor(tabuleiro);
 
-                    if (vencedor == 0)
+                    if (venceu == 0)
                     {
-                        if (jogador_atual == 1)
-                            jogador_atual = 2;
+                        if (jogadorXouO == 1)
+                            jogadorXouO = 2;
                         else
-                            jogador_atual = 1;
+                            jogadorXouO = 1;
                     }
                     else
                     {
-                        if (vencedor == 1)
+                        if (venceu == 1)
                             vitorias_x++;
-                        else if (vencedor == 2)
+                        else if (venceu == 2)
                             vitorias_o++;
 
                         if (vitorias_x < 2 && vitorias_o < 2)
                         {
                             rodada++;
-                            vencedor = 0;
+                            venceu = 0;
 
                             for (int linha = 0; linha < 3; linha++)
                             {
@@ -255,10 +232,34 @@ void jogodavelha()
                                 }
                             }
 
-                            if (rodada % 2 == 1)
-                                jogador_atual = 1;
-                            else
-                                jogador_atual = 2;
+                            if (vezdobot==0)// adicionei isso aqui pra testar ( esse if especificamente)
+                                if (rodada % 2 == 1)
+                                {
+                                    jogadorXouO = 1;
+                                }
+                                else
+                                {
+                                    jogadorXouO = 2;
+                                }
+                            else// adicionei esse else todo tbm, se tiver dando erro tira os 2 e deixa só esse segundo if que não tem comentário
+                                if (rodada % 2 == 1)
+                                {
+                                    jogadorXouO = 2;
+                                }
+                                else
+                                {
+                                    jogadorXouO = 1;
+                                }
+
+                                if(vezdobot==1)
+                                {
+                                    // Botar os if e else e cada posição responida pelo player aqui!... talvez...?s
+                                    vezdobot=0;
+                                }
+                                else
+                                {
+                                    vezdobot =1;
+                                }
                         }
                     }
                 }

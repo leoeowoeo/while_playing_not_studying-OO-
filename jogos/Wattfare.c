@@ -222,4 +222,6 @@ SPRITES:
     umidificador
 
     WAP
+
+
 */

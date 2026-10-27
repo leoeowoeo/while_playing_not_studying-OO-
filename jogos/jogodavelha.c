@@ -254,6 +254,7 @@ void jogodavelha()
                                 if(vezdobot==1)
                                 {
                                     // Botar os if e else e cada posição responida pelo player aqui!... talvez...?s
+                                    //if()
                                     vezdobot=0;
                                 }
                                 else

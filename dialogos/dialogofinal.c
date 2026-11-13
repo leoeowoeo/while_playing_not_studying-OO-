@@ -163,6 +163,13 @@ int dialogofinal(int *finais_alcancados,int *acertos)
 
         linha_atual += 2;
         wattron(stdscr, A_BOLD);
+        slow_mvwprintw(stdscr, "Pitagoras(o solitario)- E entao, eu que", linha_atual, Xall, 50,&skipado);
+        wattroff(stdscr, A_BOLD);
+        refresh(); if (!skipado) napms(700);
+
+
+        linha_atual += 2;
+        wattron(stdscr, A_BOLD);
         slow_mvwprintw(stdscr, "Pitagoras(o solitario)- Voce quer aceitar a realidade ou desafiar o destino e refazer as coisas da forma correta?", linha_atual, Xall, 50,&skipado);
         wattroff(stdscr, A_BOLD);
         refresh(); if (!skipado) napms(700);
